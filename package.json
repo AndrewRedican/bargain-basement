@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "start": "cross-env NODE_ENV=development webpack-dev-server",
+    "build": "cross-env NODE_ENV=production BUILD_ENV=all webpack"
   },
   "repository": {
     "type": "git",
@@ -18,12 +19,34 @@
   "homepage": "https://github.com/AndrewRedican/bargain-basement#readme",
   "dependencies": {
     "axios": "^0.19.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "evergreen-ui": "^4.21.5",
+    "firebase": "^7.5.0",
+    "firebase-admin": "^8.8.0",
+    "firebase-functions": "^3.3.0",
+    "font-awesome": "^4.7.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.7.4",
+    "@babel/plugin-transform-object-assign": "^7.7.4",
+    "@babel/plugin-transform-runtime": "^7.7.4",
+    "@babel/preset-env": "^7.7.4",
+    "@babel/preset-react": "^7.7.4",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-extensible-destructuring": "^4.3.1",
+    "babel-plugin-transform-react-constant-elements": "^6.23.0",
+    "cross-env": "^6.0.3",
+    "css-loader": "^3.2.0",
+    "eslint": "^6.7.1",
+    "file-loader": "^5.0.2",
+    "html-webpack-plugin": "^3.2.0",
+    "style-loader": "^1.0.1",
+    "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^4.41.2",
-    "webpack-dev-server": "^3.9.0"
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0",
+    "webpack-merge": "^4.2.2"
   }
 }
