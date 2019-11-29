@@ -8,7 +8,7 @@ const path = require('path'),
 
 const defines = {
   'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
-  'process.env.VERSION': JSON.stringify(package.version),
+  'process.env.VERSION': JSON.stringify(package.version)
 }
 
 let output,
@@ -17,8 +17,8 @@ let output,
     new webpack.DefinePlugin(defines),
     new HtmlWebpackPlugin({
       title: `${package.name} (version ${package.version})`,
-      template: './src/index.html',
-    }),
+      template: './src/index.html'
+    })
   ]
 
 /**
@@ -31,6 +31,7 @@ switch (NODE_ENV) {
     output = {
       path: path.resolve(__dirname, 'dist'),
       filename: 'bundle.js',
+      publicPath: '/'
     }
     devtool = 'eval-source-map'
     break
@@ -39,6 +40,7 @@ switch (NODE_ENV) {
     output = {
       path: path.resolve(__dirname, 'public'),
       filename: 'bundle.js',
+      publicPath: '/'
     }
     devtool = false
     plugins.push(new UglifyJSPlugin())
@@ -48,6 +50,7 @@ switch (NODE_ENV) {
     output = {
       path: path.resolve(__dirname, 'dist'),
       filename: 'bundle.js',
+      publicPath: '/'
     }
     devtool = 'eval-source-map'
     break
@@ -62,30 +65,31 @@ const config = {
     rules: [
       {
         test: /\.scss$/,
-        loader: 'style!css!resolve-url!sass?sourceMap',
+        loader: 'style!css!resolve-url!sass?sourceMap'
       },
       {
         test: /\.css$/,
-        use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
+        use: [{ loader: 'style-loader' }, { loader: 'css-loader' }]
       },
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
-        },
+          loader: 'babel-loader'
+        }
       },
       {
         test: /\.(jpe?g|gif|png|eot|svg|woff|woff2|ttf)$/,
         loader: 'file-loader',
         options: {
-          useRelativePath: process.env.NODE_ENV === 'production',
-        },
-      },
-    ],
+          useRelativePath: process.env.NODE_ENV === 'production'
+        }
+      }
+    ]
   },
-  devtool: devtool,
-  plugins: plugins,
+  devtool,
+  plugins,
+  devServer: { historyApiFallback: true }
 }
 
 module.exports = config

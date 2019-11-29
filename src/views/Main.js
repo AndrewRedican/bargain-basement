@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import { Pane, Text } from 'evergreen-ui'
+import { BrowserRouter, Route } from 'react-router-dom'
+import { Pane } from 'evergreen-ui'
+import { WelcomePage, PackagesPage } from './Pages'
 
 class Main extends Component {
   constructor(props) {
@@ -14,7 +16,10 @@ class Main extends Component {
         background='tint2'
         borderRadius={3}
       >
-        <Text>Content to be displayed here</Text>
+        <BrowserRouter>
+          <Route path='/' component={WelcomePage} />
+          <Route path='/packages' component={PackagesPage} />
+        </BrowserRouter>
       </Pane>
     )
   }

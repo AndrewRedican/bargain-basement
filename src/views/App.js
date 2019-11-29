@@ -1,19 +1,12 @@
-import React, { Component } from 'react'
+import React from 'react'
 import NavBar from './NavBar'
 import Main from './Main'
 
-class App extends Component {
-  constructor(props) {
-    super(props)
-  }
-  render() {
-    return (
-      <>
-        <NavBar />
-        <Main />
-      </>
-    )
-  }
-}
+const App = () => (
+  <>
+    <NavBar />
+    <Main />
+  </>
+)
 
 export default App
