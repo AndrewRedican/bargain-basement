@@ -16,7 +16,6 @@ export const App = () => (
       display='flex'
       padding={16}
       height='calc(100vh - 84px)'
-      background='tint2'
       borderRadius={3}
     >
       <Route path={BASE_PATH} component={WelcomePage} />
