@@ -1,0 +1,22 @@
+{
+  "name": "bargain-basement",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndrewRedican/bargain-basement.git"
+  },
+  "author": "andrew.redican.mejia@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AndrewRedican/bargain-basement/issues"
+  },
+  "homepage": "https://github.com/AndrewRedican/bargain-basement#readme",
+  "dependencies": {
+    "react": "^16.12.0"
+  }
+}
