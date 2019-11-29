@@ -17,6 +17,13 @@
   },
   "homepage": "https://github.com/AndrewRedican/bargain-basement#readme",
   "dependencies": {
-    "react": "^16.12.0"
+    "axios": "^0.19.0",
+    "evergreen-ui": "^4.21.5",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  },
+  "devDependencies": {
+    "webpack": "^4.41.2",
+    "webpack-dev-server": "^3.9.0"
   }
 }
