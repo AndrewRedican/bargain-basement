@@ -1,6 +1,6 @@
 const path = require('path'),
   webpack = require('webpack'),
-  UglifyJSPlugin = require('uglifyjs-webpack-plugin'),
+  TerserPlugin = require('terser-webpack-plugin'),
   package = require('./package.json'),
   HtmlWebpackPlugin = require('html-webpack-plugin'),
   NODE_ENV = process.env.NODE_ENV,
@@ -44,7 +44,14 @@ switch (NODE_ENV) {
       publicPath: '/'
     }
     devtool = false
-    plugins.push(new UglifyJSPlugin())
+    plugins.push(
+      new TerserPlugin({
+        parallel: true,
+        terserOptions: {
+          ecma: 6
+        }
+      })
+    )
     break
   case 'default':
     console.log('WEBPACK - DEFAULT')
