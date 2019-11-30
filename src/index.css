@@ -25,3 +25,7 @@ a {
 .header-title {
   margin: 10px;
 }
+
+#shopping-cart-header-button {
+  cursor: pointer;
+}
