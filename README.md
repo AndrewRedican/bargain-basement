@@ -1,10 +1,8 @@
-# "bargain-basement"
-
 ## Quick Description
 
 "Bargain basement" is a modern frontend web application for an ecommerce web app where users can browser and purchase packages. Project development started on November 28, 2019, and ends on December 5, 2019.
 
-## Requirements
+### Requirements
 
 - [ ] User should be able to clearly see package names and prices
 - [ ] User should be able to access a detailed page for each package that shows more detail about said package
@@ -15,9 +13,9 @@
 - [ ] User should receive a 10% discount on my basket for purchasing multiple packages
 - [ ] User should be able to sort and search packages on the front page to easily packages
 
-## Getting Started
+### Getting Started
 
-#### Run project locally.
+#### Running project locally:
 
 1. NodeJS must be installed https://nodejs.org/en/.
 2. Git must be install https://git-scm.com/downloads.
@@ -26,19 +24,19 @@
 5. Run node script to start dev server and serve the web app. Run `npm start` Run `npm i` in prompt/terminal.
 6. Finally open localhost:8080 in browser.
 
-## Testing
+### Testing
 
 Work in progress.
 
-## Project Standards
+### Project Standards
 
 Work in progress.
 
-## Development Stategy / Design Decisions
+### Development Stategy / Design Decisions
 
 Work in progress.
 
-## UI Assets
+### UI Assets
 
 https://evergreen.segment.com/get-started/introduction
 
