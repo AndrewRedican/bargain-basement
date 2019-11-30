@@ -1,6 +1,6 @@
 ## Quick Description
 
-"Bargain basement" is a modern frontend web application for an ecommerce web app where users can browser and purchase packages. Project development started on November 28, 2019, and ends on December 5, 2019.
+"Bargain basement" is a modern frontend web application for an ecommerce web app where users can browser and purchase packages. Project development started on November 28, 2019, and ends on December 5, 2019. This project also relates to https://github.com/AndrewRedican/bargain-basement-service.
 
 ### Requirements
 
