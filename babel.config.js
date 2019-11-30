@@ -22,12 +22,12 @@ const presets =
               firefox: 45,
               chrome: 49,
               safari: 10,
-              node: '6.11',
+              node: '6.11'
             },
-            modules: moduleSystem,
-          },
+            modules: moduleSystem
+          }
         ],
-        '@babel/preset-react',
+        '@babel/preset-react'
       ]
 
 /**
@@ -40,17 +40,18 @@ module.exports = {
   plugins: [
     '@babel/plugin-transform-object-assign',
     '@babel/plugin-proposal-object-rest-spread',
+    '@babel/plugin-proposal-class-properties',
     'babel-plugin-extensible-destructuring',
-    ['@babel/plugin-transform-runtime', transformOptions],
+    ['@babel/plugin-transform-runtime', transformOptions]
   ],
   env: {
     production: {
       plugins: [
         // Optimize constant react elements in the production build. (Makes debugging harder, so skip this in development)
-        'transform-react-constant-elements',
+        'transform-react-constant-elements'
       ],
-      ignore: ['test/*'],
-    },
+      ignore: ['test/*']
+    }
   },
-  ignore: ['scripts/*.js'],
+  ignore: ['scripts/*.js']
 }
