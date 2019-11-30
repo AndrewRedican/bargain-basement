@@ -1,3 +1,23 @@
 body {
   background-image: url('assets/black_denim.png');
 }
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.navbar {
+  background-color: #000000cc;
+}
+
+.font-texture {
+  font-size: 1.5em;
+  font-family: 'Segoe UI';
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+  color: white;
+  -webkit-mask-image: url('assets/light-honeycomb.png');
+  mask-image: url('assets/light-honeycomb.png');
+}

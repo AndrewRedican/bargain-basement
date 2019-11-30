@@ -9,17 +9,21 @@ class NavBar extends Component {
   }
   render() {
     return (
-      <Pane display='flex' padding={16} background='tint2' borderRadius={3}>
+      <Pane className='navbar' display='flex' padding={16} borderRadius={3}>
         <Pane flex={1} alignItems='center' display='flex'>
           <Heading size={600}>
-            <Link to={BASE_PATH}>Bargain Basement</Link>
+            <Link to={BASE_PATH} className='font-texture'>
+              Bargain Basement
+            </Link>
           </Heading>
         </Pane>
         <Pane>
-          <Button appearance='minimal' marginRight={16}>
-            <Link to={SIGNIN_PATH}>Sign in</Link>
+          <Button appearance='minimal' height={40} marginRight={16}>
+            <Link to={SIGNIN_PATH} className='font-texture'>
+              Sign in
+            </Link>
           </Button>
-          <Button appearance='primary'>
+          <Button height={40} appearance='primary' intent='none'>
             <Link to={SIGNUP_PATH}>Sign up</Link>
           </Button>
         </Pane>
