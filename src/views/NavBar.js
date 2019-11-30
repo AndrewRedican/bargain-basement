@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { openCart } from '../actions'
 import { Pane, Button, Heading } from 'evergreen-ui'
 import { BASE_PATH, SIGNIN_PATH, SIGNUP_PATH } from './App'
 
@@ -14,7 +17,7 @@ class NavBar extends Component {
               src='src/assets/icons/png/016-shopping-cart-1.png'
               height={40}
               width={40}
-              onClick={this.props.openCheckout}
+              onClick={this.props.openCart}
             />
             <Link to={BASE_PATH} className='font-texture header-title'>
               Bargain Basement
@@ -36,5 +39,7 @@ class NavBar extends Component {
   }
 }
 
-// bindActionCreators
-export default NavBar
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ openCart }, dispatch)
+
+export default connect(null, mapDispatchToProps)(NavBar)

@@ -1,10 +1,7 @@
-const Types = {
-  GET_APP_DATA: 'GET_APP_DATA',
-  GET_USER_DATA: 'GET_USER_DATA',
-  OPEN_CART: 'OPEN_CART',
-  CLOSE_CART: 'CLOSE_CART',
-  CHECKOUT: 'CHECKOUT',
-  PAYMENT_CONFIRM: 'PAYMENT_CONFIRM'
-}
-
-export default Types
+export const GET_APP_DATA = 'GET_APP_DATA'
+export const GET_USER_DATA = 'GET_USER_DATA'
+export const OPEN_CART = 'OPEN_CART'
+export const CLOSE_CART = 'CLOSE_CART'
+export const ADD_TO_CART = 'ADD_TO_CART'
+export const CHECKOUT = 'CHECKOUT'
+export const PAYMENT_CONFIRM = 'PAYMENT_CONFIRM'

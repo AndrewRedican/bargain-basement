@@ -1,4 +1,8 @@
 import React, { Component } from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { closeCart } from '../actions'
+
 import {
   SideSheet,
   Pane,
@@ -10,12 +14,7 @@ import {
 } from 'evergreen-ui'
 
 class CheckoutPane extends Component {
-  constructor(props) {
-    super(props)
-    this.state = { isShown: props.isShown }
-  }
-
-  closeView = () => this.setState({ isShown: false })
+  state = {}
 
   selectTab = e =>
     this.setState({ selectedIndex: e.target.getAttribute('data-index') })
@@ -23,8 +22,8 @@ class CheckoutPane extends Component {
   render() {
     return (
       <SideSheet
-        isShown={this.state.isShown}
-        onCloseComplete={this.closeView}
+        isShown={this.props.isShown}
+        onCloseComplete={this.props.closeCart}
         containerProps={{
           display: 'flex',
           flex: '1',
@@ -70,9 +69,11 @@ class CheckoutPane extends Component {
   }
 }
 
-CheckoutPane.defaultProps = {
-  isShown: false
-}
+const mapStateToProps = ({ CartData }) => ({
+  isShown: CartData.isShown
+})
 
-// mapStateToProps
-export default CheckoutPane
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ closeCart }, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(CheckoutPane)
