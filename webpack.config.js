@@ -17,7 +17,8 @@ let output,
     new webpack.DefinePlugin(defines),
     new HtmlWebpackPlugin({
       title: `${package.name} (version ${package.version})`,
-      template: './src/index.html'
+      template: './src/index.html',
+      favicon: 'src/assets/icons/png/016-shopping-cart-1.png'
     })
   ]
 

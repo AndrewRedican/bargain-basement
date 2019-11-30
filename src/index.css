@@ -21,3 +21,7 @@ a {
   -webkit-mask-image: url('assets/light-honeycomb.png');
   mask-image: url('assets/light-honeycomb.png');
 }
+
+.header-title {
+  margin: 10px;
+}
