@@ -18,7 +18,7 @@ let output,
     new HtmlWebpackPlugin({
       title: `${package.name} (version ${package.version})`,
       template: './src/index.html',
-      favicon: 'src/assets/icons/png/016-shopping-cart-1.png'
+      favicon: 'src/assets/icons/png/basil.png'
     })
   ]
 
@@ -67,7 +67,7 @@ switch (NODE_ENV) {
 const config = {
   target: 'web',
   mode: NODE_ENV,
-  entry: ['./src/index.js', 'font-awesome/css/font-awesome.css'],
+  entry: ['./src/index.js'],
   output,
   module: {
     rules: [

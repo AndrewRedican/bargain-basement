@@ -4,6 +4,8 @@ import { Pane } from 'evergreen-ui'
 import NavBar from './NavBar'
 import { WelcomePage, PackagesPage, SignInPage, SignUpPage } from './Pages'
 import CheckoutPane from './CheckoutPane'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'shards-ui/dist/css/shards.min.css'
 
 export const BASE_PATH = '/'
 export const PACKAGES_PATH = '/packages'

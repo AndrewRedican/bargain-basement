@@ -1,5 +1,11 @@
+@font-face {
+  font-family: 'FarmFont';
+  src: url('assets/fonts/From Cartoon Blocks.ttf') format('truetype');
+}
+
 body {
-  background-image: url('assets/black_denim.png');
+  background-image: url('assets/concrete_wall_2.png');
+  min-width: 950px;
 }
 
 a {
@@ -7,25 +13,32 @@ a {
   color: inherit;
 }
 
-.navbar {
-  background-color: #000000cc;
-}
-
-.font-texture {
-  font-size: 1.5em;
-  font-family: 'Segoe UI';
-  margin: 0 auto;
-  padding: 0;
-  text-align: center;
-  color: white;
-  -webkit-mask-image: url('assets/light-honeycomb.png');
-  mask-image: url('assets/light-honeycomb.png');
+#brand-title {
+  font-size: 36px;
+  font-family: 'FarmFont', Fallback, sans-serif !important;
+  padding: 0px;
+  color: #fff;
+  display: inline-block;
+  line-height: inherit;
+  white-space: nowrap;
+  text-decoration: none;
+  box-sizing: border-box;
 }
 
 .header-title {
   margin: 10px;
 }
 
-#shopping-cart-header-button {
+#cart-btn {
+  width: 60px;
+  height: 60px;
+  padding: 0px;
+}
+
+.no-padding {
+  padding: 2px 0px;
+}
+
+.pointer {
   cursor: pointer;
 }
