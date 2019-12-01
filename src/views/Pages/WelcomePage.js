@@ -1,3 +1,3 @@
 import React from 'react'
 
-export const WelcomePage = () => <>Welcome</>
+export const WelcomePage = () => <></>

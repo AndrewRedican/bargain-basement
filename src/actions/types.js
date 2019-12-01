@@ -1,3 +1,5 @@
+export const STORE_PACKAGES = 'STORE_PACKAGES'
+export const STORE_PRODUCTS = 'STORE_PRODUCTS'
 export const GET_APP_DATA = 'GET_APP_DATA'
 export const GET_USER_DATA = 'GET_USER_DATA'
 export const OPEN_CART = 'OPEN_CART'
