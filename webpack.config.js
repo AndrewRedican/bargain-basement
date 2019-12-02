@@ -3,6 +3,7 @@ const path = require('path'),
   TerserPlugin = require('terser-webpack-plugin'),
   package = require('./package.json'),
   HtmlWebpackPlugin = require('html-webpack-plugin'),
+  CopyPlugin = require('copy-webpack-plugin'),
   NODE_ENV = process.env.NODE_ENV,
   BUILD_ENV = process.env.BUILD_ENV
 
@@ -52,6 +53,11 @@ switch (NODE_ENV) {
         }
       })
     )
+    // plugins.push(
+    //   new CopyPlugin([
+    //     { from: 'src/assets/**', to: 'public/assets/**', context: 'public' }
+    //   ])
+    // )
     break
   case 'default':
     console.log('WEBPACK - DEFAULT')
@@ -98,6 +104,9 @@ const config = {
   devtool,
   plugins,
   devServer: { historyApiFallback: true }
+  // optimization: {
+  //   minimize: false
+  // }
 }
 
 module.exports = config

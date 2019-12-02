@@ -47,6 +47,7 @@
     "babel-loader": "^8.0.6",
     "babel-plugin-extensible-destructuring": "^4.3.1",
     "babel-plugin-transform-react-constant-elements": "^6.23.0",
+    "copy-webpack-plugin": "^5.0.5",
     "cross-env": "^6.0.3",
     "css-loader": "^3.2.0",
     "eslint": "^6.7.1",
