@@ -24,6 +24,11 @@
 5. Run node script to start dev server and serve the web app. Run `npm start` Run `npm i` in prompt/terminal.
 6. Finally open localhost:8080 in browser.
 
+### Deploying to Production:
+
+1. Run `npm run build`
+2. Run `firebase deploy`
+
 ### Testing
 
 Work in progress.
