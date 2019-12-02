@@ -1,14 +1,7 @@
 import React, { Component } from 'react'
 import firebase from 'firebase'
 
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardBody,
-  CardFooter,
-  Button
-} from 'shards-react'
+import { Card, CardHeader, CardTitle, CardBody, Button } from 'shards-react'
 
 class PackageCard extends Component {
   constructor(props) {
