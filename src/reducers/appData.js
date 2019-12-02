@@ -1,5 +1,6 @@
 import {
   STORE_PACKAGES,
+  STORE_PACKAGE,
   STORE_PRODUCTS,
   STORE_FILE_META
 } from '../actions/types'
@@ -15,7 +16,18 @@ export default (state = initialState, action) => {
     case STORE_PACKAGES:
       return {
         ...state,
-        packages: action.packages.data
+        packages: {
+          ...state.packages,
+          ...action.packages.data
+        }
+      }
+    case STORE_PACKAGE:
+      return {
+        ...state,
+        packages: {
+          ...state.packages,
+          [action.id]: action.package.data
+        }
       }
     case STORE_PRODUCTS:
       return {

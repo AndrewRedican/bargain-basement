@@ -4,6 +4,7 @@ import firebase from 'firebase/app'
 import {
   USER_AUTHENTICATED,
   STORE_PACKAGES,
+  STORE_PACKAGE,
   STORE_PRODUCTS,
   STORE_FILE_META,
   OPEN_CART,
@@ -28,6 +29,18 @@ export const loadPackages = () => dispatch =>
       return { success: false }
     }
   })()
+
+export const loadPackage = id => dispatch =>
+  (async id => {
+    try {
+      const res = await axios.get(`/packages/${id}`)
+      dispatch({ type: STORE_PACKAGE, id, package: res.data })
+      return { success: true }
+    } catch (error) {
+      console.error(error)
+      return { success: false }
+    }
+  })(id)
 
 export const storeProducts = products => dispatch =>
   dispatch({

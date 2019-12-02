@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { Card, CardHeader, CardTitle, CardBody } from 'shards-react'
+import { Link } from 'react-router-dom'
 import { loadDownloadUrl } from '../actions'
-
-import { Card, CardHeader, CardTitle, CardBody, Button } from 'shards-react'
+import { PACKAGE_DETAIL } from '../paths'
 
 class PackageCard extends Component {
   componentDidMount() {
@@ -11,20 +12,23 @@ class PackageCard extends Component {
   }
 
   render() {
+    const readMoreTarget = PACKAGE_DETAIL.replace(':id', this.props.id)
     return (
       <Card className='package-card'>
         <CardHeader>{this.props.name}</CardHeader>
         <img
+          className='package-card-img'
           src={
             this.props.pkgImage.downloadUrl ||
             'src/assets/icons/svg/loading.svg'
           }
-          style={{ objectFit: 'scale-down', maxHeight: 400, maxWidth: 400 }}
         />
         <CardBody>
           <CardTitle>{this.props.price} USD</CardTitle>
           <p className='limited-display'>{this.props.description}</p>
-          <Button>Read more &rarr;</Button>
+          <Link className='btn btn-primary' to={readMoreTarget}>
+            Read more &rarr;
+          </Link>
         </CardBody>
       </Card>
     )
