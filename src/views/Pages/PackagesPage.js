@@ -1,24 +1,18 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import axios from 'axios'
 import PackageCard from '../../components/PackageCard'
 import { loadPackages } from '../../actions'
 
 class PackagesPage extends Component {
-  state = { loading: true }
-
   componentDidMount() {
     this.props.loadPackages()
   }
 
-  renderPakages = () => {
-    //
-    return <PackageCard />
-  }
+  renderPakage = (pkg, i) => <PackageCard key={i} {...pkg} />
 
   render() {
-    return <>Packages{this.renderPakages()}</>
+    return <>{Object.values(this.props.packages).map(this.renderPakage)}</>
   }
 }
 
