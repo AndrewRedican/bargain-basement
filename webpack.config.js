@@ -53,11 +53,14 @@ switch (NODE_ENV) {
         }
       })
     )
-    // plugins.push(
-    //   new CopyPlugin([
-    //     { from: 'src/assets/**', to: 'public/assets/**', context: 'public' }
-    //   ])
-    // )
+    plugins.push(
+      new CopyPlugin([
+        {
+          from: path.resolve(__dirname, 'src/assets'),
+          to: path.resolve(__dirname, 'public/src/assets')
+        }
+      ])
+    )
     break
   case 'default':
     console.log('WEBPACK - DEFAULT')
