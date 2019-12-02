@@ -1,13 +1,17 @@
 import axios from 'axios'
+import firebase from 'firebase'
 
 import {
   USER_AUTHENTICATED,
   STORE_PACKAGES,
   STORE_PRODUCTS,
+  STORE_FILE_META,
   OPEN_CART,
   CLOSE_CART,
   ADD_TO_CART
 } from './types'
+
+import { selectFileByKey } from '../selectors/appData'
 
 export const userAuthenticated = store => user =>
   store.dispatch({ type: USER_AUTHENTICATED, user })
@@ -30,6 +34,30 @@ export const storeProducts = products => dispatch =>
     type: STORE_PRODUCTS,
     products
   })
+
+export const loadDownloadUrl = relativeDir => dispatch =>
+  (async () => {
+    try {
+      const noStored = !selectFileByKey(relativeDir)
+      if (noStored) {
+        const name = relativeDir.split('/').slice(-1)[0]
+        const downloadUrl = await firebase
+          .storage()
+          .ref(relativeDir)
+          .getDownloadURL()
+
+        dispatch({
+          type: STORE_FILE_META,
+          file: { downloadUrl, relativeDir, name },
+          key: relativeDir
+        })
+      }
+      return { success: true }
+    } catch (error) {
+      console.error(error)
+      return { success: false }
+    }
+  })()
 
 export const openCart = () => dispatch =>
   dispatch({

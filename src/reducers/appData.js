@@ -1,8 +1,13 @@
-import { STORE_PACKAGES, STORE_PRODUCTS } from '../actions/types'
+import {
+  STORE_PACKAGES,
+  STORE_PRODUCTS,
+  STORE_FILE_META
+} from '../actions/types'
 
 const initialState = {
   packages: {},
-  products: {}
+  products: {},
+  files: {}
 }
 
 export default (state = initialState, action) => {
@@ -16,6 +21,17 @@ export default (state = initialState, action) => {
       return {
         ...state,
         products: action.products
+      }
+    case STORE_FILE_META:
+      return {
+        ...state,
+        files: {
+          ...state.files,
+          [action.key]: {
+            ...state.files[action.key],
+            ...action.file
+          }
+        }
       }
     default:
       return state

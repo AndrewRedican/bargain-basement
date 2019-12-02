@@ -1,38 +1,24 @@
 import React, { Component } from 'react'
-import firebase from 'firebase'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { loadDownloadUrl } from '../actions'
 
 import { Card, CardHeader, CardTitle, CardBody, Button } from 'shards-react'
 
 class PackageCard extends Component {
-  constructor(props) {
-    super(props)
-    const imgs = (props.image || '').split(';')
-    const img = imgs[this.getRandomInt(imgs.length)]
-    this.dir = `assets/packages/${img}`
-    this.cardImage = React.createRef()
-  }
-
   componentDidMount() {
-    const updateImgSrc = url => (this.cardImage.current.src = url)
-    firebase
-      .storage()
-      .ref(this.dir)
-      .getDownloadURL()
-      .then(updateImgSrc)
-      .catch(error => {
-        console.error(error)
-      })
+    this.props.loadDownloadUrl(this.props.pkgImageRelDir)
   }
-
-  getRandomInt = max => Math.floor(Math.random() * Math.floor(max))
 
   render() {
     return (
       <Card className='package-card'>
         <CardHeader>{this.props.name}</CardHeader>
         <img
-          src='src/assets/icons/svg/loading.svg'
-          ref={this.cardImage}
+          src={
+            this.props.pkgImage.downloadUrl ||
+            'src/assets/icons/svg/loading.svg'
+          }
           style={{ objectFit: 'scale-down', maxHeight: 400, maxWidth: 400 }}
         />
         <CardBody>
@@ -45,4 +31,12 @@ class PackageCard extends Component {
   }
 }
 
-export default PackageCard
+const mapStateToProps = ({ appData }, ownProps) => ({
+  pkgImageRelDir: `assets/packages/${ownProps.image}`,
+  pkgImage: appData.files[`assets/packages/${ownProps.image}`] || {}
+})
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ loadDownloadUrl }, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(PackageCard)
