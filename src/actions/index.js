@@ -1,12 +1,16 @@
 import axios from 'axios'
 
 import {
+  USER_AUTHENTICATED,
   STORE_PACKAGES,
   STORE_PRODUCTS,
   OPEN_CART,
   CLOSE_CART,
   ADD_TO_CART
 } from './types'
+
+export const userAuthenticated = store => user =>
+  store.dispatch({ type: USER_AUTHENTICATED, user })
 
 export const loadPackages = () => dispatch =>
   (async () => {

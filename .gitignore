@@ -21,6 +21,9 @@ public/
 # Dependency directories
 node_modules/
 
+# Secrets
+src/firebase/config.js
+
 # Optional npm cache directory
 .npm
 
