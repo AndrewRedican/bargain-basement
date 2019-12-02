@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux'
-import AppData from './appData'
-import UserData from './userData'
-import CartData from './cartData'
+import appData from './appData'
+import userData from './userData'
+import cartData from './cartData'
 
 const rootReducer = combineReducers({
-  AppData,
-  UserData,
-  CartData
+  appData,
+  userData,
+  cartData
 })
 
 export default rootReducer

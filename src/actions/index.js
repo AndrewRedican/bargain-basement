@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 import {
   STORE_PACKAGES,
   STORE_PRODUCTS,
@@ -6,11 +8,18 @@ import {
   ADD_TO_CART
 } from './types'
 
-export const storePackages = packages => dispatch =>
-  dispatch({
-    type: STORE_PACKAGES,
-    packages
-  })
+export const loadPackages = () => dispatch =>
+  (async () => {
+    try {
+      const res = (await axios.get('/packages')) || {}
+      const packages = res.data
+      dispatch({ type: STORE_PACKAGES, packages })
+      return { success: true }
+    } catch (error) {
+      console.error(error)
+      return { success: false }
+    }
+  })()
 
 export const storeProducts = products => dispatch =>
   dispatch({

@@ -69,8 +69,8 @@ class CheckoutPane extends Component {
   }
 }
 
-const mapStateToProps = ({ CartData }) => ({
-  isShown: CartData.isShown
+const mapStateToProps = ({ cartData }) => ({
+  isShown: cartData.isShown
 })
 
 const mapDispatchToProps = dispatch =>

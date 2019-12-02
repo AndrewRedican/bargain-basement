@@ -3,20 +3,13 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import axios from 'axios'
 import PackageCard from '../../components/PackageCard'
-import { storePackages } from '../../actions'
+import { loadPackages } from '../../actions'
 
 class PackagesPage extends Component {
   state = { loading: true }
 
   componentDidMount() {
-    this.loadPackages()
-  }
-
-  loadPackages = async () => {
-    const response = await axios.get('packages')
-    console.warn('@loadPackages', response, response.data)
-    this.props.storePackages(response.data)
-    this.setState({ loading: false })
+    this.props.loadPackages()
   }
 
   renderPakages = () => {
@@ -34,8 +27,6 @@ const mapStateToProps = ({ appData }) => ({
 })
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ storePackages }, dispatch)
+  bindActionCreators({ loadPackages }, dispatch)
 
-connect(mapStateToProps, mapDispatchToProps)(PackagesPage)
-
-export { PackagesPage }
+export default connect(mapStateToProps, mapDispatchToProps)(PackagesPage)

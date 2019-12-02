@@ -10,7 +10,7 @@ export default (state = initialState, action) => {
     case STORE_PACKAGES:
       return {
         ...state,
-        packages: action.packages
+        packages: action.packages.data
       }
     case STORE_PRODUCTS:
       return {
