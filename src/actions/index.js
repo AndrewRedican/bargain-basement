@@ -1,5 +1,5 @@
 import axios from 'axios'
-import firebase from 'firebase'
+import firebase from 'firebase/app'
 
 import {
   USER_AUTHENTICATED,
