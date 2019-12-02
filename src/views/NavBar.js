@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { openCart } from '../actions'
-import { BASE_PATH, PACKAGES_PATH, SIGNIN_PATH, SIGNUP_PATH } from './App'
+import { BASE_PATH, PACKAGES_PATH, SIGNIN_PATH, SIGNUP_PATH } from '../paths'
 import { Navbar, Nav, NavItem, NavLink } from 'shards-react'
 
 class NavBar extends Component {
