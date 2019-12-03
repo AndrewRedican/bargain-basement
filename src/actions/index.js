@@ -10,7 +10,8 @@ import {
   OPEN_CART,
   CLOSE_CART,
   ADD_TO_CART,
-  REMOVE_FROM_CART
+  REMOVE_FROM_CART,
+  CHECKOUT
 } from './types'
 
 import { selectFileByKey } from '../selectors/appData'
@@ -82,3 +83,11 @@ export const addToCart = (name = '', id) => dispatch =>
 
 export const removeFromCart = (name = '', id) => dispatch =>
   dispatch({ type: REMOVE_FROM_CART, name, id })
+
+export const checkout = () => dispatch => {
+  toast.success(
+    `That's it! You have checked out and "paid" for these amazing packages. \nThanks for using demo :).`,
+    { autoClose: 5000 }
+  )
+  dispatch({ type: CHECKOUT })
+}

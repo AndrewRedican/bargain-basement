@@ -12,7 +12,7 @@ import {
   Button,
   Container
 } from 'shards-react'
-import { closeCart, removeFromCart } from '../actions'
+import { closeCart, removeFromCart, checkout } from '../actions'
 
 class CheckoutPane extends Component {
   componentDidMount() {
@@ -48,7 +48,7 @@ class CheckoutPane extends Component {
                 data-name={pkg.name}
                 className='ext-package-img-cart'
                 src={this.props.removeImg.downloadUrl}
-                onClick={this.props.removeFromCart}
+                onClick={this.removeFromCart}
               />
               <span className='cart-pkg-name'>{pkg.name}</span>
               <span className='cart-pkg-price'>{pkg.price}</span>
@@ -91,7 +91,11 @@ class CheckoutPane extends Component {
         </ModalHeader>
         <ModalBody>{this.renderBody(selectedPkgs)}</ModalBody>
         <ModalFooter>
-          <Button block disabled={!selectedPkgs.length}>
+          <Button
+            block
+            disabled={!selectedPkgs.length}
+            onClick={this.props.checkout}
+          >
             Checkout
           </Button>
         </ModalFooter>
@@ -116,7 +120,7 @@ const mapStateToProps = ({ cartData, appData }) => ({
 })
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ closeCart, removeFromCart }, dispatch)
+  bindActionCreators({ closeCart, removeFromCart, checkout }, dispatch)
 
 CheckoutPane.defaultProps = {
   deleteImg: {},

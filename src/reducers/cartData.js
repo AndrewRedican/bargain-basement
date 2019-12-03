@@ -33,6 +33,7 @@ export default (state = initialState, action) => {
     case CHECKOUT:
       return {
         ...state,
+        isShown: false,
         selectedPkgIds: {}
       }
     default:
