@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { BrowserRouter, Route } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { Pane } from 'evergreen-ui'
+import { Container, Row } from 'shards-react'
 import { ToastContainer } from 'react-toastify'
 import {
   BASE_PATH,
@@ -27,6 +27,7 @@ class App extends Component {
     this.props.loadDownloadUrl('assets/icons/png/cart.png')
     this.props.loadDownloadUrl('assets/icons/png/add.png')
     this.props.loadDownloadUrl('assets/icons/png/delete.png')
+    this.props.loadDownloadUrl('assets/icons/png/remove.png')
     this.props.loadDownloadUrl('assets/icons/png/discount.png')
   }
 
@@ -35,18 +36,15 @@ class App extends Component {
       <>
         <BrowserRouter>
           <NavBar />
-          <Pane
-            display='flex'
-            padding={16}
-            height='calc(100vh - 84px)'
-            borderRadius={3}
-          >
-            <Route path={BASE_PATH} component={WelcomePage} />
-            <Route path={PACKAGES_PATH} component={PackagesPage} />
-            <Route path={SIGNUP_PATH} component={SignUpPage} />
-            <Route path={SIGNIN_PATH} component={SignInPage} />
-            <Route path={PACKAGE_DETAIL} component={PackageDetails} />
-          </Pane>
+          <Container>
+            <Row>
+              <Route path={BASE_PATH} component={WelcomePage} />
+              <Route path={PACKAGES_PATH} component={PackagesPage} />
+              <Route path={SIGNUP_PATH} component={SignUpPage} />
+              <Route path={SIGNIN_PATH} component={SignInPage} />
+              <Route path={PACKAGE_DETAIL} component={PackageDetails} />
+            </Row>
+          </Container>
         </BrowserRouter>
         <CheckoutPane />
         <ToastContainer

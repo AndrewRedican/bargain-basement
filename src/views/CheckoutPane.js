@@ -1,79 +1,82 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import {
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Row,
+  Col,
+  Button,
+  Container,
+  CardTitle
+} from 'shards-react'
 import { closeCart } from '../actions'
 
-import {
-  SideSheet,
-  Pane,
-  Heading,
-  Paragraph,
-  Tablist,
-  Tab,
-  Card
-} from 'evergreen-ui'
-
 class CheckoutPane extends Component {
-  state = {}
+  componentDidMount() {
+    window.addEventListener('keydown', this.onEscapeCloseModal, true)
+  }
 
-  selectTab = e =>
-    this.setState({ selectedIndex: e.target.getAttribute('data-index') })
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.onEscapeCloseModal, true)
+  }
+
+  onEscapeCloseModal = event => {
+    if (event.key === 'Escape') this.props.closeCart()
+  }
 
   render() {
     return (
-      <SideSheet
-        isShown={this.props.isShown}
-        onCloseComplete={this.props.closeCart}
-        containerProps={{
-          display: 'flex',
-          flex: '1',
-          flexDirection: 'column'
-        }}
+      <Modal
+        open={this.props.isShown}
+        hideModal={this.props.closeCart}
+        modalClassName='checkout-container'
+        backdropClassName='checkout-backdrop'
       >
-        <Pane zIndex={1} flexShrink={0} elevation={0} backgroundColor='white'>
-          <Pane padding={16} borderBottom='muted'>
-            <Heading size={600}>Title</Heading>
-            <Paragraph size={400} color='muted'>
-              Optional description or sub title
-            </Paragraph>
-          </Pane>
-          <Pane display='flex' padding={8}>
-            <Tablist>
-              {['Traits', 'Event History', 'Identities'].map((tab, index) => (
-                <Tab
-                  key={tab}
-                  data-index={index}
-                  isSelected={this.state.selectedIndex === index}
-                  onSelect={this.selectTab}
-                >
-                  {tab}
-                </Tab>
-              ))}
-            </Tablist>
-          </Pane>
-        </Pane>
-        <Pane flex='1' overflowY='scroll' background='tint1' padding={16}>
-          <Card
-            backgroundColor='white'
-            elevation={0}
-            height={240}
-            display='flex'
-            alignItems='center'
-            justifyContent='center'
-          >
-            <Heading>Some content</Heading>
-          </Card>
-        </Pane>
-      </SideSheet>
+        <ModalHeader>
+          <Container className='full-width'>
+            <Row>
+              <Col tag='span' sm='9' md='9' lg='9' xl='9'>
+                <CardTitle>My Trolley</CardTitle>
+              </Col>
+              <Col tag='span' sm='3' md='3' lg='3' xl='3'>
+                <img
+                  id='exit-package-img'
+                  src={this.props.deleteImg.downloadUrl}
+                  onClick={this.props.closeCart}
+                />
+              </Col>
+            </Row>
+          </Container>
+        </ModalHeader>
+        <ModalBody>
+          <img
+            className='exit-package-img'
+            src={this.props.removeImg.downloadUrl}
+          />
+        </ModalBody>
+        <ModalFooter>
+          <Button block>Checkout</Button>
+        </ModalFooter>
+      </Modal>
     )
   }
 }
 
-const mapStateToProps = ({ cartData }) => ({
-  isShown: cartData.isShown
+const mapStateToProps = ({ cartData, appData }) => ({
+  isShown: cartData.isShown,
+  deleteImg: appData.files['assets/icons/png/delete.png'],
+  removeImg: appData.files['assets/icons/png/remove.png']
 })
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators({ closeCart }, dispatch)
+
+CheckoutPane.defaultProps = {
+  deleteImg: {},
+  removeImg: {}
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(CheckoutPane)

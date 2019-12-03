@@ -39,7 +39,7 @@ class PackageDetails extends Component {
         </Row>
         <Row>
           {products.map((product, k) => (
-            <Col key={k} sm='12' sm='6' md='4' lg='4' xl='4'>
+            <Col key={k} sm='6' md='4' lg='4' xl='4'>
               <ProductCard {...product} />
             </Col>
           ))}
