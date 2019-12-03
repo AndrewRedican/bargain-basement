@@ -9,7 +9,7 @@ import { Navbar, Nav, NavItem, NavLink } from 'shards-react'
 class NavBar extends Component {
   render() {
     return (
-      <Navbar type='dark' theme='primary' expand='md'>
+      <Navbar className='sticky-bar' type='dark' theme='primary' expand='md'>
         <NavItem>
           <Link id='brand-title' to={BASE_PATH}>
             B. Basement
