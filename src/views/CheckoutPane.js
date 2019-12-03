@@ -35,29 +35,43 @@ class CheckoutPane extends Component {
 
   renderBody = selectedPkgs => {
     if (!selectedPkgs.length) return <CardBody>No packages selected.</CardBody>
+    const withDiscount = selectedPkgs.length >= 2
 
-    let totalPrice = 0
+    const grossTotal = selectedPkgs
+      .map(p => p.price)
+      .reduce((acummulator, value) => acummulator + value)
+
+    const netTotal = withDiscount ? grossTotal * 0.9 : grossTotal
     return (
       <ListGroup>
-        {selectedPkgs.map((pkg, i) => {
-          totalPrice += pkg.price
-          return (
-            <ListGroupItem key={i}>
-              <img
-                data-id={pkg.id}
-                data-name={pkg.name}
-                className='ext-package-img-cart'
-                src={this.props.removeImg.downloadUrl}
-                onClick={this.removeFromCart}
-              />
-              <span className='cart-pkg-name'>{pkg.name}</span>
-              <span className='cart-pkg-price'>{pkg.price}</span>
-            </ListGroupItem>
-          )
-        })}
+        {selectedPkgs.map((pkg, i) => (
+          <ListGroupItem key={i}>
+            <img
+              data-id={pkg.id}
+              data-name={pkg.name}
+              className='ext-package-img-cart'
+              src={this.props.removeImg.downloadUrl}
+              onClick={this.removeFromCart}
+            />
+            <span className='cart-pkg-name'>{pkg.name}</span>
+            <span className='cart-pkg-price'>{pkg.price}</span>
+          </ListGroupItem>
+        ))}
+        {withDiscount ? (
+          <ListGroupItem>
+            <img
+              className='discount-package-img-cart'
+              src={this.props.discountImg.downloadUrl}
+            />
+            <span className='cart-pkg-name'>Discount</span>
+            <span className='cart-pkg-price'>-10%</span>
+          </ListGroupItem>
+        ) : (
+          undefined
+        )}
         <ListGroupItem theme='dark'>
           Total:
-          <span className='cart-pkg-total'>{totalPrice}</span>
+          <span className='cart-pkg-total'>{netTotal}</span>
         </ListGroupItem>
       </ListGroup>
     )
@@ -116,6 +130,7 @@ const mapStateToProps = ({ cartData, appData }) => ({
   isShown: cartData.isShown,
   deleteImg: appData.files['assets/icons/png/delete.png'],
   removeImg: appData.files['assets/icons/png/remove.png'],
+  discountImg: appData.files['assets/icons/png/discount.png'],
   selectedPkgs: selectedPackages(appData.packages, cartData.selectedPkgIds)
 })
 
@@ -124,7 +139,8 @@ const mapDispatchToProps = dispatch =>
 
 CheckoutPane.defaultProps = {
   deleteImg: {},
-  removeImg: {}
+  removeImg: {},
+  discountImg: {}
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CheckoutPane)

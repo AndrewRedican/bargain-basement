@@ -173,6 +173,12 @@ a {
   margin-right: 10px;
 }
 
+.discount-package-img-cart {
+  height: 20px;
+  width: 20px;
+  margin-right: 10px;
+}
+
 .cart-pkg-price {
   float: right;
 }
