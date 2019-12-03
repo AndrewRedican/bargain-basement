@@ -8,6 +8,7 @@ export const WelcomePage = () => (
         className='link-to-repo'
         href='https://andrewredican.github.io/bargain-basement/'
         target='_blank'
+        rel='noopener noreferrer'
       >
         <h1 className='project-header'>bargain-basement</h1>
       </a>
