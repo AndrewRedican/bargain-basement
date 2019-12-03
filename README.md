@@ -56,8 +56,9 @@ https://bargain-basement.firebaseapp.com
 
 ### Project Standards
 
-1. Using eslint with recommended standard
-2. Prop-Types
+1. Eslint with recommended standards https://eslint.org/
+2. Prop-Types https://github.com/facebook/prop-types
+3. Using Flux Data Flow Pattern https://facebook.github.io/flux/docs/in-depth-overview/
 
 ### UI Assets
 
