@@ -56,13 +56,12 @@ https://bargain-basement.firebaseapp.com
 
 ### Project Standards
 
-Loosely implemented certain project standards:
+Implemented some coding standards:
 
-1. To mention a few, no console logs, excepts for errors.
+1. No console logs, except for errors.
 2. Use of const where possible.
-3. Use of arrow functions everywhere (personal choice, useful on class components)
-4. Use of classes as opossed to inline styles. (personal choice, there are trade-off on either approach).
-5. If I don't use it, we remove it.
+3. Use of arrow functions (personal preference, useful on class components)
+4. Use of stylesheets as opossed to inline styles.
 
 ### UI Assets
 
