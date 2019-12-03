@@ -37,10 +37,14 @@ class PackageCard extends Component {
 
 const mapStateToProps = ({ appData }, ownProps) => ({
   pkgImageRelDir: `assets/packages/${ownProps.image}`,
-  pkgImage: appData.files[`assets/packages/${ownProps.image}`] || {}
+  pkgImage: appData.files[`assets/packages/${ownProps.image}`]
 })
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators({ loadDownloadUrl }, dispatch)
+
+PackageCard.defaultProps = {
+  pkgImage: {}
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(PackageCard)

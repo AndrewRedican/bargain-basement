@@ -64,3 +64,8 @@ a {
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
 }
+
+.product-image {
+  height: 64px;
+  width: 64px;
+}
