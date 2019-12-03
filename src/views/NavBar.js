@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { openCart } from '../actions'
-import { BASE_PATH, PACKAGES_PATH, SIGNIN_PATH, SIGNUP_PATH } from '../paths'
+import { BASE_PATH, PACKAGES_PATH } from '../paths'
 import { Navbar, Nav, NavItem, NavLink } from 'shards-react'
 
 class NavBar extends Component {
@@ -21,29 +21,17 @@ class NavBar extends Component {
               Packages
             </Link>
           </NavItem>
-          <NavItem>
-            <NavLink active className='no-padding pointer'>
-              <img
-                id='shopping-cart-header-button'
-                src={this.props.pkgImage.downloadUrl}
-                height={40}
-                width={40}
-                onClick={this.props.openCart}
-              />
-            </NavLink>
-          </NavItem>
         </Nav>
         <Nav navbar className='ml-auto'>
-          <NavItem>
-            <Link className='nav-link active' to={SIGNIN_PATH}>
-              Sign in
-            </Link>
-          </NavItem>
-          <NavItem>
-            <Link className='btn btn-dark btn-pill' to={SIGNUP_PATH}>
-              Sign up
-            </Link>
-          </NavItem>
+          <NavLink active className='no-padding pointer'>
+            <img
+              id='shopping-cart-header-button'
+              src={this.props.pkgImage.downloadUrl}
+              height={40}
+              width={40}
+              onClick={this.props.openCart}
+            />
+          </NavLink>
         </Nav>
       </Navbar>
     )

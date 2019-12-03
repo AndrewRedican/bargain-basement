@@ -4,13 +4,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Container, Row } from 'shards-react'
 import { ToastContainer } from 'react-toastify'
-import {
-  BASE_PATH,
-  PACKAGES_PATH,
-  SIGNUP_PATH,
-  SIGNIN_PATH,
-  PACKAGE_DETAIL
-} from '../paths'
+import { BASE_PATH, PACKAGES_PATH, PACKAGE_DETAIL } from '../paths'
 import NavBar from './NavBar'
 import { WelcomePage, SignInPage, SignUpPage } from './Pages'
 import PackagesPage from './Pages/PackagesPage'
@@ -40,8 +34,6 @@ class App extends Component {
             <Row>
               <Route exact path={BASE_PATH} component={WelcomePage} />
               <Route path={PACKAGES_PATH} component={PackagesPage} />
-              <Route path={SIGNUP_PATH} component={SignUpPage} />
-              <Route path={SIGNIN_PATH} component={SignInPage} />
               <Route path={PACKAGE_DETAIL} component={PackageDetails} />
             </Row>
           </Container>
