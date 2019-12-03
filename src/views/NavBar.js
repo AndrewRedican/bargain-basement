@@ -2,9 +2,20 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { openCart } from '../actions'
+import { openCart, onInputChange } from '../actions'
 import { BASE_PATH, PACKAGES_PATH } from '../paths'
-import { Navbar, Nav, NavItem, NavLink } from 'shards-react'
+import {
+  Navbar,
+  Nav,
+  NavItem,
+  NavLink,
+  InputGroup,
+  InputGroupAddon,
+  InputGroupText,
+  FormInput
+} from 'shards-react'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class NavBar extends Component {
   render() {
@@ -23,6 +34,21 @@ class NavBar extends Component {
           </NavItem>
         </Nav>
         <Nav navbar className='ml-auto'>
+          <InputGroup size='sm' seamless>
+            <InputGroupAddon type='prepend'>
+              <InputGroupText>
+                <FontAwesomeIcon icon={faSearch} />
+              </InputGroupText>
+            </InputGroupAddon>
+            <FormInput
+              className='border-0'
+              placeholder='Filter by name...'
+              value={this.props.inputValue}
+              onChange={this.props.onInputChange}
+            />
+          </InputGroup>
+        </Nav>
+        <Nav navbar className='ml-auto'>
           <NavLink active className='no-padding pointer'>
             <img
               id='shopping-cart-header-button'
@@ -39,14 +65,16 @@ class NavBar extends Component {
 }
 
 const mapStateToProps = ({ appData }) => ({
-  pkgImage: appData.files['assets/icons/png/cart.png']
+  pkgImage: appData.files['assets/icons/png/cart.png'],
+  inputValue: appData.inputValue
 })
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ openCart }, dispatch)
+  bindActionCreators({ openCart, onInputChange }, dispatch)
 
 NavBar.defaultProps = {
-  pkgImage: {}
+  pkgImage: {},
+  inputValue: ''
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar)

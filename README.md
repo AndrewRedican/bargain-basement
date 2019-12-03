@@ -10,7 +10,7 @@
 - [x] User should be able to access my basket at anytime // Pending to finish view
 - [x] User should be able to add packages to my basket/cart whilst either being on the front page or a package detail page
 - [ ] User should always see the current value of my basket and any discounts applied across the shop
-- [ ] User should receive a 10% discount on my basket for purchasing multiple packages
+- [x] User should receive a 10% discount on my basket for purchasing multiple packages
 - [ ] User should be able to sort and search packages on the front page to easily packages
 
 ### Getting Started

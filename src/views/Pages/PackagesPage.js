@@ -10,19 +10,28 @@ class PackagesPage extends Component {
     this.props.loadPackages()
   }
 
+  matchesName = pkg => {
+    const rgx = new RegExp(this.props.inputValue, 'i')
+    rgx.ignoreCase
+    return rgx.test(pkg.name)
+  }
+
   renderPakage = (pkg, i) => <PackageCard key={i} {...pkg} />
 
   render() {
     return (
       <Row className='row-extra-padding'>
-        {Object.values(this.props.packages).map(this.renderPakage)}
+        {Object.values(this.props.packages)
+          .filter(this.matchesName)
+          .map(this.renderPakage)}
       </Row>
     )
   }
 }
 
 const mapStateToProps = ({ appData }) => ({
-  packages: appData.packages
+  packages: appData.packages,
+  inputValue: appData.inputValue
 })
 
 const mapDispatchToProps = dispatch =>

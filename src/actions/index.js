@@ -11,7 +11,8 @@ import {
   CLOSE_CART,
   ADD_TO_CART,
   REMOVE_FROM_CART,
-  CHECKOUT
+  CHECKOUT,
+  SET_INPUT_VALUE
 } from './types'
 
 import { selectFileByKey } from '../selectors/appData'
@@ -90,4 +91,8 @@ export const checkout = () => dispatch => {
     { autoClose: 5000 }
   )
   dispatch({ type: CHECKOUT })
+}
+
+export const onInputChange = event => dispatch => {
+  dispatch({ type: SET_INPUT_VALUE, text: event.target.value })
 }

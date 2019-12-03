@@ -1,12 +1,14 @@
 import {
   STORE_PACKAGES,
   STORE_PACKAGE,
-  STORE_FILE_META
+  STORE_FILE_META,
+  SET_INPUT_VALUE
 } from '../actions/types'
 
 const initialState = {
   packages: {},
-  files: {}
+  files: {},
+  inputValue: ''
 }
 
 export default (state = initialState, action) => {
@@ -37,6 +39,11 @@ export default (state = initialState, action) => {
             ...action.file
           }
         }
+      }
+    case SET_INPUT_VALUE:
+      return {
+        ...state,
+        inputValue: action.text
       }
     default:
       return state
