@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { BrowserRouter, Route } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -53,6 +54,10 @@ class App extends Component {
       </>
     )
   }
+}
+
+App.propTypes = {
+  loadDownloadUrl: PropTypes.func
 }
 
 const mapDispatchToProps = dispatch =>

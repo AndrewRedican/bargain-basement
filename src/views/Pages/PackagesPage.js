@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Row } from 'shards-react'
@@ -52,5 +53,12 @@ const mapStateToProps = ({ appData }) => ({
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators({ loadPackages }, dispatch)
+
+PackagesPage.propTypes = {
+  loadPackages: PropTypes.func,
+  inputValue: PropTypes.string,
+  sortAscending: PropTypes.bool,
+  packages: PropTypes.object
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(PackagesPage)

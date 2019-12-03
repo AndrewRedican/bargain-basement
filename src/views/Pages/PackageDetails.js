@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Container, Row, Col, CardBody, CardTitle, Button } from 'shards-react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -78,6 +79,22 @@ const mapDispatchToProps = dispatch =>
 PackageDetails.defaultProps = {
   products: {},
   buyImg: {}
+}
+
+PackageDetails.propTypes = {
+  loadPackage: PropTypes.func,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string
+    })
+  }),
+  name: PropTypes.string,
+  price: PropTypes.number,
+  description: PropTypes.string,
+  selected: PropTypes.bool,
+  addToCart: PropTypes.func,
+  removeFromCart: PropTypes.func,
+  products: PropTypes.any
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PackageDetails)

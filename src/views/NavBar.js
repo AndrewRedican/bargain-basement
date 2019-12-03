@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -50,7 +51,7 @@ class NavBar extends Component {
             </Link>
           </NavItem>
         </Nav>
-        {this.props.displayFilterAndSort ? (
+        {this.props.filterAndSortDisplayed ? (
           <>
             <Nav navbar className='ml-auto'>
               <InputGroup size='sm' seamless>
@@ -114,7 +115,7 @@ const mapStateToProps = ({ appData }, { location }) => ({
   pkgImage: appData.files['assets/icons/png/cart.png'],
   inputValue: appData.inputValue,
   sortAscending: appData.sortAscending,
-  displayFilterAndSort: location.pathname === PACKAGES_PATH
+  filterAndSortDisplayed: location.pathname === PACKAGES_PATH
 })
 
 const mapDispatchToProps = dispatch =>
@@ -123,6 +124,18 @@ const mapDispatchToProps = dispatch =>
 NavBar.defaultProps = {
   pkgImage: {},
   inputValue: ''
+}
+
+NavBar.propTypes = {
+  filterAndSortDisplayed: PropTypes.bool,
+  setSortAscending: PropTypes.func,
+  sortAscending: PropTypes.bool,
+  onInputChange: PropTypes.func,
+  inputValue: PropTypes.string,
+  pkgImage: PropTypes.shape({
+    downloadUrl: PropTypes.string
+  }),
+  openCart: PropTypes.func
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NavBar))

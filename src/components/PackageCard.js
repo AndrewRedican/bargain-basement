@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Card, CardHeader, CardTitle, CardBody } from 'shards-react'
@@ -68,6 +69,25 @@ PackageCard.defaultProps = {
   pkgImage: {},
   buyImg: {},
   removeImg: {}
+}
+
+const imgShape = PropTypes.shape({
+  downloadUrl: PropTypes.string
+})
+
+PackageCard.propTypes = {
+  loadDownloadUrl: PropTypes.func,
+  pkgImageRelDir: PropTypes.string,
+  addToCart: PropTypes.func,
+  removeFromCart: PropTypes.func,
+  id: PropTypes.number,
+  name: PropTypes.string,
+  price: PropTypes.number,
+  description: PropTypes.string,
+  selected: PropTypes.bool,
+  pkgImage: imgShape,
+  buyImg: imgShape,
+  removeImg: imgShape
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PackageCard)

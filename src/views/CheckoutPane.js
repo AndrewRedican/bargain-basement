@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { ListGroup, ListGroupItem, CardBody } from 'shards-react'
@@ -141,6 +142,21 @@ CheckoutPane.defaultProps = {
   deleteImg: {},
   removeImg: {},
   discountImg: {}
+}
+
+const imgShape = PropTypes.shape({
+  downloadUrl: PropTypes.string
+})
+
+CheckoutPane.propTypes = {
+  closeCart: PropTypes.func,
+  removeFromCart: PropTypes.func,
+  checkout: PropTypes.func,
+  removeImg: imgShape,
+  discountImg: imgShape,
+  deleteImg: imgShape,
+  selectedPkgs: PropTypes.object,
+  isShown: PropTypes.bool
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CheckoutPane)
