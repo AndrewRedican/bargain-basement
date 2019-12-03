@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Container, Row, Col, CardBody, CardTitle, Button } from 'shards-react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { loadPackage, addToCart } from '../../actions'
+import { loadPackage, addToCart, removeFromCart } from '../../actions'
 import ProductCard from '../../components/ProductCard'
 
 class PackageDetails extends Component {
@@ -10,7 +10,11 @@ class PackageDetails extends Component {
     this.props.loadPackage(this.props.match.params.id)
   }
 
-  onAddToCart = () => this.props.addToCart(this.props.name, this.props.id)
+  onAddToCart = () =>
+    this.props.addToCart(this.props.name, this.props.match.params.id)
+
+  removeFromCart = () =>
+    this.props.removeFromCart(this.props.name, this.props.match.params.id)
 
   makeChucks = (items = [], chunkSize = 3) => {
     var chunkList = []
@@ -29,14 +33,25 @@ class PackageDetails extends Component {
               {`${this.props.name} Package - ${this.props.price} USD`}
             </CardTitle>
             {this.props.description}
-            <Button
-              className='add-package-btn'
-              pill
-              theme='success'
-              onClick={this.onAddToCart}
-            >
-              Add to Cart
-            </Button>
+            {!this.props.selected ? (
+              <Button
+                className='add-package-btn'
+                pill
+                theme='success'
+                onClick={this.onAddToCart}
+              >
+                Add to Cart
+              </Button>
+            ) : (
+              <Button
+                className='add-package-btn'
+                pill
+                theme='danger'
+                onClick={this.removeFromCart}
+              >
+                Remove from Cart
+              </Button>
+            )}
           </CardBody>
         </Row>
         <Row>
@@ -51,13 +66,14 @@ class PackageDetails extends Component {
   }
 }
 
-const mapStateToProps = ({ appData }, ownProps) => ({
+const mapStateToProps = ({ appData, cartData }, ownProps) => ({
   ...appData.packages[ownProps.match.params.id],
-  buyImg: appData.files['assets/icons/png/add.png']
+  buyImg: appData.files['assets/icons/png/add.png'],
+  selected: cartData.selectedPkgIds[ownProps.match.params.id]
 })
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ loadPackage, addToCart }, dispatch)
+  bindActionCreators({ loadPackage, addToCart, removeFromCart }, dispatch)
 
 PackageDetails.defaultProps = {
   products: {},
