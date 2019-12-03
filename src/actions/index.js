@@ -12,7 +12,8 @@ import {
   ADD_TO_CART,
   REMOVE_FROM_CART,
   CHECKOUT,
-  SET_INPUT_VALUE
+  SET_INPUT_VALUE,
+  SORT_PACKAGE_ASCENDING
 } from './types'
 
 import { selectFileByKey } from '../selectors/appData'
@@ -93,6 +94,8 @@ export const checkout = () => dispatch => {
   dispatch({ type: CHECKOUT })
 }
 
-export const onInputChange = event => dispatch => {
+export const onInputChange = event => dispatch =>
   dispatch({ type: SET_INPUT_VALUE, text: event.target.value })
-}
+
+export const setSortAscending = bool => dispatch =>
+  dispatch({ type: SORT_PACKAGE_ASCENDING, bool })

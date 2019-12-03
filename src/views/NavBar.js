@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { openCart, onInputChange } from '../actions'
+import { openCart, onInputChange, setSortAscending } from '../actions'
 import { BASE_PATH, PACKAGES_PATH } from '../paths'
 import {
   Navbar,
@@ -25,14 +25,14 @@ import {
 } from 'shards-react'
 
 class NavBar extends Component {
-  state = { dropdownOpen: false, sortAscending: true }
+  state = { dropdownOpen: false }
 
   toggleDropdownOpen = () =>
     this.setState({ dropdownOpen: !this.state.dropdownOpen })
 
-  setAscending = () => this.setState({ sortAscending: true })
+  setAscending = () => this.props.setSortAscending(true)
 
-  setDescending = () => this.setState({ sortAscending: false })
+  setDescending = () => this.props.setSortAscending(false)
 
   render() {
     return (
@@ -73,13 +73,13 @@ class NavBar extends Component {
             <DropdownToggle>Sort by Price</DropdownToggle>
             <DropdownMenu>
               <DropdownItem
-                active={!this.state.sortAscending}
+                active={!this.props.sortAscending}
                 onClick={this.setDescending}
               >
                 Highest First
               </DropdownItem>
               <DropdownItem
-                active={this.state.sortAscending}
+                active={this.props.sortAscending}
                 onClick={this.setAscending}
               >
                 Lowest First
@@ -105,11 +105,12 @@ class NavBar extends Component {
 
 const mapStateToProps = ({ appData }) => ({
   pkgImage: appData.files['assets/icons/png/cart.png'],
-  inputValue: appData.inputValue
+  inputValue: appData.inputValue,
+  sortAscending: appData.sortAscending
 })
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ openCart, onInputChange }, dispatch)
+  bindActionCreators({ openCart, onInputChange, setSortAscending }, dispatch)
 
 NavBar.defaultProps = {
   pkgImage: {},
