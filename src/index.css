@@ -45,6 +45,10 @@ a {
   min-width: 250px;
 }
 
+.package-card.selected {
+  border: 2px solid #007bff !important;
+}
+
 .package-card-img {
   object-fit: scale-down;
   max-height: 400px;

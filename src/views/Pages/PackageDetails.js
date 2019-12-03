@@ -10,7 +10,7 @@ class PackageDetails extends Component {
     this.props.loadPackage(this.props.match.params.id)
   }
 
-  onAddToCart = () => this.props.addToCart(this.props.name)
+  onAddToCart = () => this.props.addToCart(this.props.name, this.props.id)
 
   makeChucks = (items = [], chunkSize = 3) => {
     var chunkList = []
@@ -25,7 +25,9 @@ class PackageDetails extends Component {
       <Container className='package-products'>
         <Row>
           <CardBody>
-            <CardTitle>Package Details</CardTitle>
+            <CardTitle>
+              {`${this.props.name} Package - ${this.props.price} USD`}
+            </CardTitle>
             {this.props.description}
             <Button
               className='add-package-btn'

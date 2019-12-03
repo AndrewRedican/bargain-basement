@@ -9,7 +9,8 @@ import {
   STORE_FILE_META,
   OPEN_CART,
   CLOSE_CART,
-  ADD_TO_CART
+  ADD_TO_CART,
+  REMOVE_FROM_CART
 } from './types'
 
 import { selectFileByKey } from '../selectors/appData'
@@ -76,10 +77,8 @@ export const closeCart = () => dispatch =>
     type: CLOSE_CART
   })
 
-export const addToCart = (pkgName = '') => dispatch => {
-  toast.success(`Your ${pkgName} package has been added.`)
-  dispatch({
-    type: ADD_TO_CART,
-    package: pkgName
-  })
-}
+export const addToCart = (name = '', id) => dispatch =>
+  dispatch({ type: ADD_TO_CART, name, id })
+
+export const removeFromCart = (name = '', id) => dispatch =>
+  dispatch({ type: REMOVE_FROM_CART, name, id })

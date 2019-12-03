@@ -23,6 +23,7 @@ export default (state = initialState, action) => {
         }
       }
     case REMOVE_FROM_CART:
+      console.warn('@REMOVE_FROM_CART', action)
       return {
         ...state,
         selectedPkgIds: {
