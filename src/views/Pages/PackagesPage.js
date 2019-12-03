@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { Row } from 'shards-react'
 import PackageCard from '../../components/PackageCard'
 import { loadPackages } from '../../actions'
 
@@ -12,7 +13,11 @@ class PackagesPage extends Component {
   renderPakage = (pkg, i) => <PackageCard key={i} {...pkg} />
 
   render() {
-    return <>{Object.values(this.props.packages).map(this.renderPakage)}</>
+    return (
+      <Row className='row-extra-padding'>
+        {Object.values(this.props.packages).map(this.renderPakage)}
+      </Row>
+    )
   }
 }
 
