@@ -9,7 +9,7 @@ import { Navbar, Nav, NavItem, NavLink } from 'shards-react'
 class NavBar extends Component {
   render() {
     return (
-      <Navbar className='sticky-bar' type='dark' theme='primary' expand='md'>
+      <Navbar sticky='top' type='dark' theme='primary' expand='md'>
         <NavItem>
           <Link id='brand-title' to={BASE_PATH}>
             B. Basement
@@ -25,7 +25,7 @@ class NavBar extends Component {
             <NavLink active className='no-padding pointer'>
               <img
                 id='shopping-cart-header-button'
-                src='src/assets/icons/png/cart.png'
+                src={this.props.pkgImage.downloadUrl}
                 height={40}
                 width={40}
                 onClick={this.props.openCart}
@@ -50,7 +50,15 @@ class NavBar extends Component {
   }
 }
 
+const mapStateToProps = ({ appData }) => ({
+  pkgImage: appData.files['assets/icons/png/cart.png']
+})
+
 const mapDispatchToProps = dispatch =>
   bindActionCreators({ openCart }, dispatch)
 
-export default connect(null, mapDispatchToProps)(NavBar)
+NavBar.defaultProps = {
+  pkgImage: {}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar)
