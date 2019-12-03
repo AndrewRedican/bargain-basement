@@ -13,12 +13,14 @@ class ProductCard extends Component {
     const { pkgImage, name, price, description } = this.props
     return (
       <Card className='product-card'>
-        <img
-          className='product-card-img'
-          src={pkgImage.downloadUrl || 'src/assets/icons/svg/loading.svg'}
-        />
         <CardBody>
-          <CardTitle>{name}</CardTitle>
+          <CardTitle>
+            <img
+              className='product-card-img'
+              src={pkgImage.downloadUrl || 'src/assets/icons/svg/loading.svg'}
+            />
+            {name}
+          </CardTitle>
           <CardSubtitle>{`${price} USD`}</CardSubtitle>
           {description}
         </CardBody>

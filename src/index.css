@@ -66,9 +66,12 @@ a {
 }
 
 .product-card {
+  margin-top: 6px;
+  margin-bottom: 6px;
 }
 
 .product-card-img {
-  height: 64px;
-  width: 64px;
+  height: 56px;
+  width: 56px;
+  margin: 12px;
 }
