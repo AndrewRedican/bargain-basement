@@ -4,11 +4,11 @@
 
 ### Requirements
 
-- [ ] User should be able to clearly see package names and prices
-- [ ] User should be able to access a detailed page for each package that shows more detail about said package
-- [ ] All pages should include some form styling to make the shop look inviting
+- [x] User should be able to clearly see package names and prices
+- [x] User should be able to access a detailed page for each package that shows more detail about said package
+- [x] All pages should include some form styling to make the shop look inviting
 - [x] User should be able to access my basket at anytime // Pending to finish view
-- [ ] User should be able to add packages to my basket/cart whilst either being on the front page or a package detail page
+- [x] User should be able to add packages to my basket/cart whilst either being on the front page or a package detail page
 - [ ] User should always see the current value of my basket and any discounts applied across the shop
 - [ ] User should receive a 10% discount on my basket for purchasing multiple packages
 - [ ] User should be able to sort and search packages on the front page to easily packages
