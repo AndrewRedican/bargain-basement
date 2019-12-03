@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import store from './store'
 import './axiosConfig'
 import './paths'
-import { App } from './views/App'
+import App from './views/App'
 import './index.css'
 
 import { initializeFirebase } from './firebase'

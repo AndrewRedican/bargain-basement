@@ -5,7 +5,6 @@ import {
   USER_AUTHENTICATED,
   STORE_PACKAGES,
   STORE_PACKAGE,
-  STORE_PRODUCTS,
   STORE_FILE_META,
   OPEN_CART,
   CLOSE_CART,
@@ -41,12 +40,6 @@ export const loadPackage = id => dispatch =>
       return { success: false }
     }
   })(id)
-
-export const storeProducts = products => dispatch =>
-  dispatch({
-    type: STORE_PRODUCTS,
-    products
-  })
 
 export const loadDownloadUrl = relativeDir => dispatch =>
   (async () => {

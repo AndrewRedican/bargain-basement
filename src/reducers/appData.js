@@ -1,13 +1,11 @@
 import {
   STORE_PACKAGES,
   STORE_PACKAGE,
-  STORE_PRODUCTS,
   STORE_FILE_META
 } from '../actions/types'
 
 const initialState = {
   packages: {},
-  products: {},
   files: {}
 }
 
@@ -28,11 +26,6 @@ export default (state = initialState, action) => {
           ...state.packages,
           [action.id]: action.package.data
         }
-      }
-    case STORE_PRODUCTS:
-      return {
-        ...state,
-        products: action.products
       }
     case STORE_FILE_META:
       return {
