@@ -38,7 +38,7 @@ class App extends Component {
           <NavBar />
           <Container>
             <Row>
-              <Route path={BASE_PATH} component={WelcomePage} />
+              <Route exact path={BASE_PATH} component={WelcomePage} />
               <Route path={PACKAGES_PATH} component={PackagesPage} />
               <Route path={SIGNUP_PATH} component={SignUpPage} />
               <Route path={SIGNIN_PATH} component={SignInPage} />
