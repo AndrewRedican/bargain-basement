@@ -56,12 +56,8 @@ https://bargain-basement.firebaseapp.com
 
 ### Project Standards
 
-Implemented some coding standards:
-
-1. No console logs, except for errors.
-2. Use of const where possible.
-3. Use of arrow functions (personal preference, useful on class components)
-4. Use of stylesheets as opossed to inline styles.
+1. Using eslint with recommended standard
+2. Prop-Types
 
 ### UI Assets
 
