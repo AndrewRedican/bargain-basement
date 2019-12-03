@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
-import { Container, Row, Col, CardBody, CardTitle } from 'shards-react'
+import { Container, Row, Col, CardBody, CardTitle, Button } from 'shards-react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { loadPackage } from '../../actions'
+import { loadPackage, addToCart } from '../../actions'
 import ProductCard from '../../components/ProductCard'
 
 class PackageDetails extends Component {
   componentDidMount() {
     this.props.loadPackage(this.props.match.params.id)
   }
+
+  onAddToCart = () => this.props.addToCart(this.props.name)
 
   makeChucks = (items = [], chunkSize = 3) => {
     var chunkList = []
@@ -25,6 +27,14 @@ class PackageDetails extends Component {
           <CardBody>
             <CardTitle>Package Details</CardTitle>
             {this.props.description}
+            <Button
+              className='add-package-btn'
+              pill
+              theme='success'
+              onClick={this.onAddToCart}
+            >
+              Add to Cart
+            </Button>
           </CardBody>
         </Row>
         <Row>
@@ -40,14 +50,16 @@ class PackageDetails extends Component {
 }
 
 const mapStateToProps = ({ appData }, ownProps) => ({
-  ...appData.packages[ownProps.match.params.id]
+  ...appData.packages[ownProps.match.params.id],
+  buyImg: appData.files['assets/icons/png/add.png']
 })
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ loadPackage }, dispatch)
+  bindActionCreators({ loadPackage, addToCart }, dispatch)
 
 PackageDetails.defaultProps = {
-  products: {}
+  products: {},
+  buyImg: {}
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PackageDetails)

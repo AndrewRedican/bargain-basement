@@ -1,15 +1,7 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardBody,
-  Row,
-  Col,
-  Button
-} from 'shards-react'
+import { Card, CardHeader, CardTitle, CardBody } from 'shards-react'
 import { Link } from 'react-router-dom'
 import { loadDownloadUrl, addToCart } from '../actions'
 import { PACKAGE_DETAIL } from '../paths'
