@@ -16,6 +16,10 @@
 
 ### Getting Started
 
+#### Play, right away - here is the link to the frontend webapp
+
+https://bargain-basement.firebaseapp.com
+
 #### Running project locally:
 
 1. NodeJS must be installed https://nodejs.org/en/.
