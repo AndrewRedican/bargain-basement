@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { ListGroup, ListGroupItem, CardBody } from 'shards-react'
 import {
   Modal,
   ModalHeader,
@@ -9,10 +10,9 @@ import {
   Row,
   Col,
   Button,
-  Container,
-  CardTitle
+  Container
 } from 'shards-react'
-import { closeCart } from '../actions'
+import { closeCart, removeFromCart } from '../actions'
 
 class CheckoutPane extends Component {
   componentDidMount() {
@@ -27,7 +27,45 @@ class CheckoutPane extends Component {
     if (event.key === 'Escape') this.props.closeCart()
   }
 
+  removeFromCart = event =>
+    this.props.removeFromCart(
+      event.target.getAttribute('data-name'),
+      event.target.getAttribute('data-id')
+    )
+
+  renderBody = selectedPkgs => {
+    if (!selectedPkgs.length) return <CardBody>No packages selected.</CardBody>
+
+    let totalPrice = 0
+    return (
+      <ListGroup>
+        {selectedPkgs.map((pkg, i) => {
+          totalPrice += pkg.price
+          return (
+            <ListGroupItem key={i}>
+              <img
+                data-id={pkg.id}
+                data-name={pkg.name}
+                className='ext-package-img-cart'
+                src={this.props.removeImg.downloadUrl}
+                onClick={this.props.removeFromCart}
+              />
+              <span className='cart-pkg-name'>{pkg.name}</span>
+              <span className='cart-pkg-price'>{pkg.price}</span>
+            </ListGroupItem>
+          )
+        })}
+        <ListGroupItem theme='dark'>
+          Total:
+          <span className='cart-pkg-total'>{totalPrice}</span>
+        </ListGroupItem>
+      </ListGroup>
+    )
+  }
+
   render() {
+    const selectedPkgs = Object.values(this.props.selectedPkgs)
+
     return (
       <Modal
         open={this.props.isShown}
@@ -39,7 +77,7 @@ class CheckoutPane extends Component {
           <Container className='full-width'>
             <Row>
               <Col tag='span' sm='9' md='9' lg='9' xl='9'>
-                <CardTitle>My Trolley</CardTitle>
+                My Trolley
               </Col>
               <Col tag='span' sm='3' md='3' lg='3' xl='3'>
                 <img
@@ -51,28 +89,34 @@ class CheckoutPane extends Component {
             </Row>
           </Container>
         </ModalHeader>
-        <ModalBody>
-          <img
-            className='exit-package-img'
-            src={this.props.removeImg.downloadUrl}
-          />
-        </ModalBody>
+        <ModalBody>{this.renderBody(selectedPkgs)}</ModalBody>
         <ModalFooter>
-          <Button block>Checkout</Button>
+          <Button block disabled={!selectedPkgs.length}>
+            Checkout
+          </Button>
         </ModalFooter>
       </Modal>
     )
   }
 }
 
+const selectedPackages = (allPackages, selectedPkgsIds) => {
+  const selected = {}
+  Object.keys(selectedPkgsIds).forEach(id => {
+    if (selectedPkgsIds[id]) selected[id] = allPackages[id]
+  })
+  return selected
+}
+
 const mapStateToProps = ({ cartData, appData }) => ({
   isShown: cartData.isShown,
   deleteImg: appData.files['assets/icons/png/delete.png'],
-  removeImg: appData.files['assets/icons/png/remove.png']
+  removeImg: appData.files['assets/icons/png/remove.png'],
+  selectedPkgs: selectedPackages(appData.packages, cartData.selectedPkgIds)
 })
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ closeCart }, dispatch)
+  bindActionCreators({ closeCart, removeFromCart }, dispatch)
 
 CheckoutPane.defaultProps = {
   deleteImg: {},
