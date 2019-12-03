@@ -1,5 +1,6 @@
 import axios from 'axios'
 import firebase from 'firebase/app'
+import { toast } from 'react-toastify'
 
 import {
   USER_AUTHENTICATED,
@@ -75,8 +76,10 @@ export const closeCart = () => dispatch =>
     type: CLOSE_CART
   })
 
-export const addToCart = pkg => dispatch =>
+export const addToCart = (pkgName = '') => dispatch => {
+  toast.success(`Your ${pkgName} package has been added.`)
   dispatch({
     type: ADD_TO_CART,
-    package: pkg
+    package: pkgName
   })
+}

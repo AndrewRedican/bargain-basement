@@ -3,6 +3,7 @@ import { BrowserRouter, Route } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Pane } from 'evergreen-ui'
+import { ToastContainer } from 'react-toastify'
 import {
   BASE_PATH,
   PACKAGES_PATH,
@@ -18,12 +19,17 @@ import CheckoutPane from './CheckoutPane'
 import { loadDownloadUrl } from '../actions'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'shards-ui/dist/css/shards.min.css'
+import 'react-toastify/dist/ReactToastify.css'
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.props.loadDownloadUrl('assets/icons/png/cart.png')
+    this.props.loadDownloadUrl('assets/icons/png/add.png')
+    this.props.loadDownloadUrl('assets/icons/png/delete.png')
+    this.props.loadDownloadUrl('assets/icons/png/discount.png')
   }
+
   render() {
     return (
       <>
@@ -43,6 +49,17 @@ class App extends Component {
           </Pane>
         </BrowserRouter>
         <CheckoutPane />
+        <ToastContainer
+          position='bottom-right'
+          autoClose={3000}
+          hideProgressBar
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnVisibilityChange
+          draggable
+          pauseOnHover={false}
+        />
       </>
     )
   }

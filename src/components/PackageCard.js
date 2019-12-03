@@ -1,15 +1,25 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { Card, CardHeader, CardTitle, CardBody } from 'shards-react'
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardBody,
+  Row,
+  Col,
+  Button
+} from 'shards-react'
 import { Link } from 'react-router-dom'
-import { loadDownloadUrl } from '../actions'
+import { loadDownloadUrl, addToCart } from '../actions'
 import { PACKAGE_DETAIL } from '../paths'
 
 class PackageCard extends Component {
   componentDidMount() {
     this.props.loadDownloadUrl(this.props.pkgImageRelDir)
   }
+
+  onAddToCart = () => this.props.addToCart(this.props.name)
 
   render() {
     const readMoreTarget = PACKAGE_DETAIL.replace(':id', this.props.id)
@@ -29,6 +39,11 @@ class PackageCard extends Component {
           <Link className='btn btn-primary' to={readMoreTarget}>
             Read more &rarr;
           </Link>
+          <img
+            className='add-package-img'
+            src={this.props.buyImg.downloadUrl}
+            onClick={this.onAddToCart}
+          />
         </CardBody>
       </Card>
     )
@@ -37,14 +52,16 @@ class PackageCard extends Component {
 
 const mapStateToProps = ({ appData }, ownProps) => ({
   pkgImageRelDir: `assets/packages/${ownProps.image}`,
-  pkgImage: appData.files[`assets/packages/${ownProps.image}`]
+  pkgImage: appData.files[`assets/packages/${ownProps.image}`],
+  buyImg: appData.files['assets/icons/png/add.png']
 })
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ loadDownloadUrl }, dispatch)
+  bindActionCreators({ loadDownloadUrl, addToCart }, dispatch)
 
 PackageCard.defaultProps = {
-  pkgImage: {}
+  pkgImage: {},
+  buyImg: {}
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PackageCard)
