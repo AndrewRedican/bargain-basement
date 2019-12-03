@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Row, Col } from 'shards-react'
+import { Container, Row, Col, CardBody, CardTitle } from 'shards-react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { loadPackage } from '../../actions'
@@ -21,7 +21,12 @@ class PackageDetails extends Component {
     const products = Object.values(this.props.products).filter(p => p)
     return (
       <Container className='package-products'>
-        <Row>Package Details</Row>
+        <Row>
+          <CardBody>
+            <CardTitle>Package Details</CardTitle>
+            {this.props.description}
+          </CardBody>
+        </Row>
         <Row>
           {products.map((product, k) => (
             <Col key={k} sm='12' sm='6' md='4' lg='4' xl='4'>
