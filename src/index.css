@@ -65,7 +65,10 @@ a {
   -webkit-box-orient: vertical;
 }
 
-.product-image {
+.product-card {
+}
+
+.product-card-img {
   height: 64px;
   width: 64px;
 }
