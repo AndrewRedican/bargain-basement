@@ -34,6 +34,13 @@ https://bargain-basement.firebaseapp.com
 1. Run `npm run build`
 2. Run `firebase deploy`
 
+### Project Standards
+
+1. Eslint with recommended standards https://eslint.org/
+2. Prop-Types https://github.com/facebook/prop-types
+3. Using Flux Data Flow Pattern https://facebook.github.io/flux/docs/in-depth-overview/
+4. Testing actions, reducers. See package.json script
+
 ### Technical Decisions
 
 1. Created repository from scratch. I opted to use some a UI kit. Initally evergreen-ui, but quickly discovered it was not suit for puropse (very opinionated, barely customizable), opted for shards-react instead which I found very please to work with. Please note I had not worked with either package before, so I may not be fully aware of best practices.
@@ -53,12 +60,6 @@ https://bargain-basement.firebaseapp.com
 8. Used 'selectors' to access store, a common approach used, in libraries such as redux saga to decouple asyncronous functions from the redux store.
 
 9. Intentionally used the approach where all reducers, actions, types, for redux stores in single directories. For larger projects, you can keep the reducer, actions, types, and tests even on a directory per component.
-
-### Project Standards
-
-1. Eslint with recommended standards https://eslint.org/
-2. Prop-Types https://github.com/facebook/prop-types
-3. Using Flux Data Flow Pattern https://facebook.github.io/flux/docs/in-depth-overview/
 
 ### UI Assets
 
