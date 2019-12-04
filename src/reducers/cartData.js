@@ -6,7 +6,7 @@ import {
   REMOVE_FROM_CART
 } from '../actions/types'
 
-const initialState = { isShown: false, selectedPkgIds: {} }
+export const initialState = { isShown: false, selectedPkgIds: {} }
 
 export default (state = initialState, action) => {
   switch (action.type) {

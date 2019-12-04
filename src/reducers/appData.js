@@ -6,7 +6,7 @@ import {
   SORT_PACKAGE_ASCENDING
 } from '../actions/types'
 
-const initialState = {
+export const initialState = {
   packages: {},
   files: {},
   inputValue: '',
