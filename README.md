@@ -32,6 +32,8 @@ https://bargain-basement.firebaseapp.com
 - 1. Locate and cd into chrome.exe directory. Example: `cd C:\Program Files (x86)\Google\Chrome\Application`
 - 2. `chrome.exe --disable-web-security --user-data-dir="C:\Users\<INSERT_YOUR_USER_NAME_IN_SYSTEM>\AppData\Local\Google\Chrome\User Data\Default"`
 
+![image info](./docs/images/chromeCorsDisabled.PNG)
+
 7. Go to localhost:8080.
 
 ### Deploying to Production:
