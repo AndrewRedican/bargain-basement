@@ -29,12 +29,12 @@ https://bargain-basement.firebaseapp.com
 5. Run node script to start dev server and serve the web app. Run `npm start`.
 6. For development, you can disable CORS on the browser. On Windows for Chrome browser, you can use the following steps: In command prompts,
 
-- 1. Locate and cd into chrome.exe directory. Example: `cd C:\Program Files (x86)\Google\Chrome\Application`
-- 2. `chrome.exe --disable-web-security --user-data-dir="C:\Users\<INSERT_YOUR_USER_NAME_IN_SYSTEM>\AppData\Local\Google\Chrome\User Data\Default"`
+- Locate and cd into chrome.exe directory. Example: `cd C:\Program Files (x86)\Google\Chrome\Application`
+- `chrome.exe --disable-web-security --user-data-dir="C:\Users\<INSERT_YOUR_USER_NAME_IN_SYSTEM>\AppData\Local\Google\Chrome\User Data\Default"`
+
+9. Go to localhost:8080.
 
 ![image info](./docs/images/chromeCorsDisabled.PNG)
-
-7. Go to localhost:8080.
 
 ### Deploying to Production:
 
