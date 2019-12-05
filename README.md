@@ -16,7 +16,7 @@
 
 ### Getting Started
 
-#### Play, right away - here is the link to the frontend webapp
+#### Deployed Website:
 
 https://bargain-basement.firebaseapp.com
 
@@ -26,8 +26,13 @@ https://bargain-basement.firebaseapp.com
 2. Git must be install https://git-scm.com/downloads.
 3. Clone or download repository. In prompt/terminal run `git clone https://github.com/AndrewRedican/bargain-basement.git`
 4. Install project dependencies from the project's root directory. Run `npm i` in prompt/terminal.
-5. Run node script to start dev server and serve the web app. Run `npm start` Run `npm i` in prompt/terminal.
-6. Finally open localhost:8080 in browser.
+5. Run node script to start dev server and serve the web app. Run `npm start`.
+6. For development, you can disable CORS on the browser. On Windows for Chrome browser, you can use the following steps: In command prompts,
+
+- 1. Locate and cd into chrome.exe directory. Example: `cd C:\Program Files (x86)\Google\Chrome\Application`
+- 2. `chrome.exe --disable-web-security --user-data-dir="C:\Users\<INSERT_YOUR_USER_NAME_IN_SYSTEM>\AppData\Local\Google\Chrome\User Data\Default"`
+
+7. Go to localhost:8080.
 
 ### Deploying to Production:
 
