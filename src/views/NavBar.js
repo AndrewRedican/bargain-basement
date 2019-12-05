@@ -23,7 +23,8 @@ import {
   Dropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem
+  DropdownItem,
+  Badge
 } from 'shards-react'
 
 class NavBar extends Component {
@@ -96,7 +97,14 @@ class NavBar extends Component {
           undefined
         )}
         <Nav navbar className='ml-auto'>
-          <NavLink active className='no-padding pointer'>
+          <NavLink active className='no-padding'>
+            {this.props.packagesInCart ? (
+              <Badge pill theme='light' style={{ cursor: 'auto' }}>
+                {this.props.packagesInCart}
+              </Badge>
+            ) : (
+              undefined
+            )}
             <img
               id='shopping-cart-header-button'
               src={this.props.pkgImage.downloadUrl}
@@ -111,11 +119,14 @@ class NavBar extends Component {
   }
 }
 
-const mapStateToProps = ({ appData }, { location }) => ({
+const mapStateToProps = ({ appData, cartData }, { location }) => ({
   pkgImage: appData.files['assets/icons/png/cart.png'],
   inputValue: appData.inputValue,
   sortAscending: appData.sortAscending,
-  filterAndSortDisplayed: location.pathname === PACKAGES_PATH
+  filterAndSortDisplayed: location.pathname === PACKAGES_PATH,
+  packagesInCart: Object.values(cartData.selectedPkgIds).filter(
+    selected => selected
+  ).length
 })
 
 const mapDispatchToProps = dispatch =>

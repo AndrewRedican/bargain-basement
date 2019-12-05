@@ -185,3 +185,7 @@ a {
 .cart-pkg-total {
   float: right;
 }
+
+#shopping-cart-header-button {
+  cursor: pointer;
+}
