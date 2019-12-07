@@ -32,19 +32,21 @@ class PackagesPage extends Component {
   }
 
   renderPakage = (pkg, i) => (
-    <Col key={i} lg={3} md={6} sm={6} xs={12} className='pkgs-col'>
-      <PackageCard {...pkg} />
+    <Col key={i} lg={3} md={6} sm={6} xs={12}>
+      <div className='pkgs-margin'>
+        <PackageCard {...pkg} />
+      </div>
     </Col>
   )
 
   render() {
     return (
-      <Row className='row-extra-padding'>
+      <>
         {Object.values(this.props.packages)
           .filter(this.matchesName)
           .sort(this.sortFn)
           .map(this.renderPakage)}
-      </Row>
+      </>
     )
   }
 }

@@ -37,8 +37,10 @@ a {
   cursor: pointer;
 }
 
-.pkgs-col {
+.pkgs-margin {
+  position: relative;
   box-sizing: border-box;
+  width: 100%;
   padding: 10px;
 }
 
