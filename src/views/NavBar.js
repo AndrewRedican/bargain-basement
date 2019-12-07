@@ -8,6 +8,8 @@ import { openCart, onInputChange, setSortAscending } from '../actions'
 import { BASE_PATH, PACKAGES_PATH } from '../paths'
 import {
   Navbar,
+  NavbarToggler,
+  Collapse,
   Nav,
   NavItem,
   NavLink,
@@ -18,7 +20,6 @@ import {
 } from 'shards-react'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
 import {
   Dropdown,
   DropdownToggle,
@@ -26,9 +27,12 @@ import {
   DropdownItem,
   Badge
 } from 'shards-react'
+import '../styles/NavBar.css'
 
 class NavBar extends Component {
-  state = { dropdownOpen: false }
+  state = { collapseOpen: false, dropdownOpen: false }
+
+  toggleNavbar = () => this.setState({ collapseOpen: !this.state.collapseOpen })
 
   toggleDropdownOpen = () =>
     this.setState({ dropdownOpen: !this.state.dropdownOpen })
@@ -37,85 +41,88 @@ class NavBar extends Component {
 
   setDescending = () => this.props.setSortAscending(false)
 
+  renderNavOptions = () => {
+    if (this.props.options)
+      return (
+        <>
+          <NavItem>
+            <Dropdown
+              inNavbar
+              open={this.state.dropdownOpen}
+              toggle={this.toggleDropdownOpen}
+            >
+              <DropdownToggle caret>Sort by Price</DropdownToggle>
+              <DropdownMenu>
+                <DropdownItem
+                  active={!this.props.sortAscending}
+                  onClick={this.setDescending}
+                >
+                  Highest First
+                </DropdownItem>
+                <DropdownItem
+                  active={this.props.sortAscending}
+                  onClick={this.setAscending}
+                >
+                  Lowest First
+                </DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+          </NavItem>
+          <NavItem style={{ padding: '2px 10px' }}>
+            <InputGroup seamless>
+              <InputGroupAddon type='prepend'>
+                <InputGroupText>
+                  <FontAwesomeIcon icon={faSearch} />
+                </InputGroupText>
+              </InputGroupAddon>
+              <FormInput
+                placeholder='Filter by name...'
+                value={this.props.inputValue}
+                onChange={this.props.onInputChange}
+              />
+            </InputGroup>
+          </NavItem>
+        </>
+      )
+    return undefined
+  }
+
   render() {
     return (
       <Navbar sticky='top' type='dark' theme='primary' expand='md'>
-        <Nav navbar>
-          <NavItem>
-            <Link id='brand-title' to={BASE_PATH}>
-              B. Basement
-            </Link>
-          </NavItem>
-        </Nav>
-        <Nav navbar>
-          <NavItem>
-            <Link className='nav-link active' to={PACKAGES_PATH}>
-              Packages
-            </Link>
-          </NavItem>
-        </Nav>
-        {this.props.filterAndSortDisplayed ? (
-          <>
-            <Nav navbar className='ml-auto'>
-              <InputGroup size='sm' seamless>
-                <InputGroupAddon type='prepend'>
-                  <InputGroupText>
-                    <FontAwesomeIcon icon={faSearch} />
-                  </InputGroupText>
-                </InputGroupAddon>
-                <FormInput
-                  className='border-0'
-                  placeholder='Filter by name...'
-                  value={this.props.inputValue}
-                  onChange={this.props.onInputChange}
-                />
-              </InputGroup>
-            </Nav>
-            <Nav navbar className='ml-auto'>
-              <Dropdown
-                inNavbar
-                open={this.state.dropdownOpen}
-                toggle={this.toggleDropdownOpen}
-              >
-                <DropdownToggle>Sort by Price</DropdownToggle>
-                <DropdownMenu>
-                  <DropdownItem
-                    active={!this.props.sortAscending}
-                    onClick={this.setDescending}
-                  >
-                    Highest First
-                  </DropdownItem>
-                  <DropdownItem
-                    active={this.props.sortAscending}
-                    onClick={this.setAscending}
-                  >
-                    Lowest First
-                  </DropdownItem>
-                </DropdownMenu>
-              </Dropdown>
-            </Nav>
-          </>
-        ) : (
-          undefined
-        )}
-        <Nav navbar className='ml-auto'>
-          <NavLink active>
-            {this.props.packagesInCart ? (
-              <Badge pill theme='light' style={{ cursor: 'auto' }}>
-                {this.props.packagesInCart}
-              </Badge>
-            ) : (
-              undefined
-            )}
-            <img
-              id='shopping-cart-header-button'
-              src={this.props.pkgImage.downloadUrl}
-              height={40}
-              width={40}
-              onClick={this.props.openCart}
-            />
-          </NavLink>
-        </Nav>
+        <Link className='navbar-brand' to={BASE_PATH}>
+          B. Basement
+        </Link>
+        <NavbarToggler
+          style={{ marginRight: 50 }}
+          onClick={this.toggleNavbar}
+        />
+        <Collapse open={this.state.collapseOpen} navbar>
+          <Nav navbar horizontal fill>
+            <NavItem>
+              <Link className='nav-link' to={PACKAGES_PATH}>
+                Packages
+              </Link>
+            </NavItem>
+            {this.renderNavOptions()}
+          </Nav>
+        </Collapse>
+        <NavLink className='cart-tab'>
+          {this.props.packagesInCart ? (
+            <Badge pill theme='light' style={{ cursor: 'auto' }}>
+              {this.props.packagesInCart}
+            </Badge>
+          ) : (
+            undefined
+          )}
+          <img
+            id='cart-btn'
+            src={this.props.pkgImage.downloadUrl}
+            height={40}
+            width={40}
+            onClick={this.props.openCart}
+          />
+        </NavLink>
       </Navbar>
     )
   }
@@ -125,7 +132,7 @@ const mapStateToProps = ({ appData, cartData }, { location }) => ({
   pkgImage: appData.files['assets/icons/png/cart.png'],
   inputValue: appData.inputValue,
   sortAscending: appData.sortAscending,
-  filterAndSortDisplayed: location.pathname === PACKAGES_PATH,
+  options: location.pathname === PACKAGES_PATH,
   packagesInCart: Object.values(cartData.selectedPkgIds).filter(
     selected => selected
   ).length
@@ -140,7 +147,7 @@ NavBar.defaultProps = {
 }
 
 NavBar.propTypes = {
-  filterAndSortDisplayed: PropTypes.bool,
+  options: PropTypes.bool,
   setSortAscending: PropTypes.func,
   sortAscending: PropTypes.bool,
   onInputChange: PropTypes.func,
