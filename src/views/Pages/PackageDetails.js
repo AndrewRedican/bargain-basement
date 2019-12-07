@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { loadPackage, addToCart, removeFromCart } from '../../actions'
 import ProductCard from '../../components/ProductCard'
+import '../../styles/PackageDetails.css'
 
 class PackageDetails extends Component {
   componentDidMount() {
@@ -27,32 +28,40 @@ class PackageDetails extends Component {
   render() {
     const products = Object.values(this.props.products).filter(p => p)
     return (
-      <Container className='package-products'>
+      <Container>
         <Row>
           <CardBody>
             <CardTitle>
               {`${this.props.name} Package - ${this.props.localPrice} ${this.props.currency}`}
             </CardTitle>
-            {this.props.description}
-            {!this.props.selected ? (
-              <Button
-                className='add-package-btn'
-                pill
-                theme='success'
-                onClick={this.onAddToCart}
-              >
-                Add to Cart
-              </Button>
-            ) : (
-              <Button
-                className='add-package-btn'
-                pill
-                theme='danger'
-                onClick={this.removeFromCart}
-              >
-                Remove from Cart
-              </Button>
-            )}
+            <Container>
+              <Row>
+                <Col sm='12' md='8' lg='8' xl='9' className='pkg-full-desc'>
+                  {this.props.description}
+                </Col>
+                <Col sm='12' md='4' lg='4' xl='3'>
+                  {!this.props.selected ? (
+                    <Button
+                      className='pkg-detail-btn'
+                      pill
+                      theme='success'
+                      onClick={this.onAddToCart}
+                    >
+                      Add to Cart
+                    </Button>
+                  ) : (
+                    <Button
+                      className='pkg-detail-btn'
+                      pill
+                      theme='danger'
+                      onClick={this.removeFromCart}
+                    >
+                      Remove from Cart
+                    </Button>
+                  )}
+                </Col>
+              </Row>
+            </Container>
           </CardBody>
         </Row>
         <Row>
