@@ -98,7 +98,7 @@ class NavBar extends Component {
           onClick={this.toggleNavbar}
         />
         <Collapse open={this.state.collapseOpen} navbar>
-          <Nav navbar horizontal fill>
+          <Nav navbar fill>
             <NavItem>
               <Link className='nav-link' to={PACKAGES_PATH}>
                 Packages
