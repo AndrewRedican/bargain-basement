@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { projectAPI } from '../axiosConfig'
 import firebase from 'firebase/app'
 import { toast } from 'react-toastify'
 
@@ -43,7 +44,7 @@ export const loadExchangeRates = () => dispatch =>
 export const loadPackages = () => dispatch =>
   (async () => {
     try {
-      const res = (await axios.get('/packages')) || {}
+      const res = (await projectAPI.get('/packages')) || {}
       const packages = res.data
       dispatch({ type: STORE_PACKAGES, packages })
       return { success: true }
@@ -56,7 +57,7 @@ export const loadPackages = () => dispatch =>
 export const loadPackage = id => dispatch =>
   (async id => {
     try {
-      const res = await axios.get(`/packages/${id}`)
+      const res = await projectAPI.get(`/packages/${id}`)
       dispatch({ type: STORE_PACKAGE, id, package: res.data })
       return { success: true }
     } catch (error) {

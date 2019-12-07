@@ -1,9 +1,10 @@
 import axios from 'axios'
 
-axios.defaults.auth = {
+export const projectAPI = axios.create()
+
+projectAPI.defaults.auth = {
   username: 'admin',
   password: 'supersecret'
 }
-
-axios.defaults.baseURL =
+projectAPI.defaults.baseURL =
   'https://us-central1-bargain-basement.cloudfunctions.net/api'
