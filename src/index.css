@@ -37,11 +37,15 @@ a {
   cursor: pointer;
 }
 
+.pkgs-col {
+  box-sizing: border-box;
+  padding: 10px;
+}
+
 .package-card {
-  width: 22%;
-  margin-left: 10px;
-  margin-right: 10px;
-  min-width: 250px;
+  position: relative;
+  height: calc(100vh - 120px);
+  min-height: 326px;
 }
 
 .package-card.selected {
@@ -49,11 +53,11 @@ a {
 }
 
 .package-card-img {
+  box-sizing: border-box;
+  margin: 10px auto;
   object-fit: scale-down;
-  max-height: 400px;
-  max-width: 400px;
-  min-width: 200px;
-  min-height: 200px;
+  width: 100%;
+  height: 36%;
 }
 
 .limited-display {
