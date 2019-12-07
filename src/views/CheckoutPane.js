@@ -84,7 +84,7 @@ class CheckoutPane extends Component {
     return (
       <Modal
         open={this.props.isShown}
-        hideModal={this.props.closeCart}
+        toggle={this.props.closeCart}
         modalClassName='checkout-container'
         backdropClassName='checkout-backdrop'
       >
