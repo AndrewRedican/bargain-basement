@@ -4,7 +4,13 @@ import { Link } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { openCart, onInputChange, setSortAscending } from '../actions'
+import {
+  openCart,
+  onInputChange,
+  setSortAscending,
+  loadExchangeRates,
+  onCurrencyChange
+} from '../actions'
 import { BASE_PATH, PACKAGES_PATH } from '../paths'
 import {
   Navbar,
@@ -30,16 +36,30 @@ import {
 import '../styles/NavBar.css'
 
 class NavBar extends Component {
-  state = { collapseOpen: false, dropdownOpen: false }
+  state = {
+    mobileMenuOpen: false,
+    sortOptionsOpen: false,
+    currOptionsOpen: false
+  }
 
-  toggleNavbar = () => this.setState({ collapseOpen: !this.state.collapseOpen })
+  componentDidMount() {
+    this.props.loadExchangeRates()
+  }
 
-  toggleDropdownOpen = () =>
-    this.setState({ dropdownOpen: !this.state.dropdownOpen })
+  toggleNavbar = () =>
+    this.setState({ collapseOpen: !this.state.mobileMenuOpen })
+
+  toggleSortOptionsOpen = () =>
+    this.setState({ sortOptionsOpen: !this.state.sortOptionsOpen })
+
+  toggleCurrOptionsOpen = () =>
+    this.setState({ currOptionsOpen: !this.state.currOptionsOpen })
 
   setAscending = () => this.props.setSortAscending(true)
 
   setDescending = () => this.props.setSortAscending(false)
+
+  setCurrency = event => this.setState({ currency: event.target.value })
 
   renderNavOptions = () => {
     if (this.props.options)
@@ -48,8 +68,8 @@ class NavBar extends Component {
           <NavItem>
             <Dropdown
               inNavbar
-              open={this.state.dropdownOpen}
-              toggle={this.toggleDropdownOpen}
+              open={this.state.sortOptionsOpen}
+              toggle={this.toggleSortOptionsOpen}
             >
               <DropdownToggle caret>Sort by Price</DropdownToggle>
               <DropdownMenu>
@@ -97,7 +117,7 @@ class NavBar extends Component {
           style={{ marginRight: 50 }}
           onClick={this.toggleNavbar}
         />
-        <Collapse open={this.state.collapseOpen} navbar>
+        <Collapse open={this.state.mobileMenuOpen} navbar>
           <Nav navbar fill>
             <NavItem>
               <Link className='nav-link' to={PACKAGES_PATH}>
@@ -105,6 +125,27 @@ class NavBar extends Component {
               </Link>
             </NavItem>
             {this.renderNavOptions()}
+            <NavItem>
+              <Dropdown
+                inNavbar
+                open={this.state.currOptionsOpen}
+                toggle={this.toggleCurrOptionsOpen}
+              >
+                <DropdownToggle caret>{this.props.currency}</DropdownToggle>
+                <DropdownMenu className='curr-drpdwn-list'>
+                  {this.props.currencies.map((code, index) => (
+                    <DropdownItem
+                      key={index}
+                      value={code}
+                      active={code === this.props.currency}
+                      onClick={this.props.onCurrencyChange}
+                    >
+                      {code}
+                    </DropdownItem>
+                  ))}
+                </DropdownMenu>
+              </Dropdown>
+            </NavItem>
           </Nav>
         </Collapse>
         <NavLink className='cart-tab'>
@@ -135,11 +176,22 @@ const mapStateToProps = ({ appData, cartData }, { location }) => ({
   options: location.pathname === PACKAGES_PATH,
   packagesInCart: Object.values(cartData.selectedPkgIds).filter(
     selected => selected
-  ).length
+  ).length,
+  currencies: appData.currencies,
+  currency: appData.currency
 })
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ openCart, onInputChange, setSortAscending }, dispatch)
+  bindActionCreators(
+    {
+      openCart,
+      onInputChange,
+      setSortAscending,
+      loadExchangeRates,
+      onCurrencyChange
+    },
+    dispatch
+  )
 
 NavBar.defaultProps = {
   pkgImage: {},
@@ -148,15 +200,20 @@ NavBar.defaultProps = {
 
 NavBar.propTypes = {
   options: PropTypes.bool,
+  loadExchangeRates: PropTypes.func,
   setSortAscending: PropTypes.func,
   sortAscending: PropTypes.bool,
   onInputChange: PropTypes.func,
+  onCurrencyChange: PropTypes.func,
   inputValue: PropTypes.string,
   pkgImage: PropTypes.shape({
     downloadUrl: PropTypes.string
   }),
   openCart: PropTypes.func,
-  packagesInCart: PropTypes.number
+  packagesInCart: PropTypes.number,
+  currency: PropTypes.string,
+  rateConversion: PropTypes.number,
+  currencies: PropTypes.arrayOf(PropTypes.string)
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NavBar))

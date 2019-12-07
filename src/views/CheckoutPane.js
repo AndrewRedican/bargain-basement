@@ -8,10 +8,7 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
-  Row,
-  Col,
-  Button,
-  Container
+  Button
 } from 'shards-react'
 import { closeCart, removeFromCart, checkout } from '../actions'
 
@@ -23,6 +20,9 @@ class CheckoutPane extends Component {
   componentWillUnmount() {
     window.removeEventListener('keydown', this.onEscapeCloseModal, true)
   }
+
+  convertLocalPrice = basePrice =>
+    Math.round(this.props.rate * basePrice * 100) / 100
 
   onEscapeCloseModal = event => {
     if (event.key === 'Escape') this.props.closeCart()
@@ -54,8 +54,10 @@ class CheckoutPane extends Component {
               src={this.props.removeImg.downloadUrl}
               onClick={this.removeFromCart}
             />
-            <span className='cart-pkg-name'>{pkg.name}</span>
-            <span className='cart-pkg-price'>{pkg.price}</span>
+            <span className='cart-pkg-name'>{`${pkg.name} Package`}</span>
+            <span className='cart-pkg-price'>{`${this.convertLocalPrice(
+              pkg.price
+            )} ${this.props.currency}`}</span>
           </ListGroupItem>
         ))}
         {withDiscount ? (
@@ -72,7 +74,9 @@ class CheckoutPane extends Component {
         )}
         <ListGroupItem theme='dark'>
           Total:
-          <span className='cart-pkg-total'>{netTotal}</span>
+          <span className='cart-pkg-total'>{`${this.convertLocalPrice(
+            netTotal
+          )} ${this.props.currency}`}</span>
         </ListGroupItem>
       </ListGroup>
     )
@@ -124,7 +128,9 @@ const mapStateToProps = ({ cartData, appData }) => ({
   deleteImg: appData.files['assets/icons/png/delete.png'],
   removeImg: appData.files['assets/icons/png/remove.png'],
   discountImg: appData.files['assets/icons/png/discount.png'],
-  selectedPkgs: selectedPackages(appData.packages, cartData.selectedPkgIds)
+  selectedPkgs: selectedPackages(appData.packages, cartData.selectedPkgIds),
+  currency: appData.currency,
+  rate: appData.rates[appData.currency]
 })
 
 const mapDispatchToProps = dispatch =>
@@ -148,7 +154,9 @@ CheckoutPane.propTypes = {
   discountImg: imgShape,
   deleteImg: imgShape,
   selectedPkgs: PropTypes.object,
-  isShown: PropTypes.bool
+  isShown: PropTypes.bool,
+  currency: PropTypes.string,
+  rate: PropTypes.number
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CheckoutPane)

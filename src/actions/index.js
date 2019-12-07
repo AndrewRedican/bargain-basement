@@ -4,6 +4,7 @@ import { toast } from 'react-toastify'
 
 import {
   USER_AUTHENTICATED,
+  STORE_EXCHANGE_RATES,
   STORE_PACKAGES,
   STORE_PACKAGE,
   STORE_FILE_META,
@@ -13,13 +14,31 @@ import {
   REMOVE_FROM_CART,
   CHECKOUT,
   SET_INPUT_VALUE,
+  SET_CURRENCY,
   SORT_PACKAGE_ASCENDING
 } from './types'
 
-import { selectFileByKey } from '../selectors/appData'
+import { selectFileByKey, selectRates } from '../selectors/appData'
 
 export const userAuthenticated = store => user =>
   store.dispatch({ type: USER_AUTHENTICATED, user })
+
+export const loadExchangeRates = () => dispatch =>
+  (async () => {
+    try {
+      const notStored = Object.keys(selectRates()).length === 0
+      if (notStored) {
+        const res = await axios.get(
+          'https://api.exchangeratesapi.io/latest?base=USD'
+        )
+        dispatch({ type: STORE_EXCHANGE_RATES, rates: res.data.rates })
+      }
+      return { success: true }
+    } catch (error) {
+      console.error(error)
+      return { success: false }
+    }
+  })()
 
 export const loadPackages = () => dispatch =>
   (async () => {
@@ -49,8 +68,8 @@ export const loadPackage = id => dispatch =>
 export const loadDownloadUrl = relativeDir => dispatch =>
   (async () => {
     try {
-      const noStored = !selectFileByKey(relativeDir)
-      if (noStored) {
+      const notStored = !selectFileByKey(relativeDir)
+      if (notStored) {
         const name = relativeDir.split('/').slice(-1)[0]
         const downloadUrl = await firebase
           .storage()
@@ -96,6 +115,9 @@ export const checkout = () => dispatch => {
 
 export const onInputChange = event => dispatch =>
   dispatch({ type: SET_INPUT_VALUE, text: event.target.value })
+
+export const onCurrencyChange = event => dispatch =>
+  dispatch({ type: SET_CURRENCY, currency: event.target.value })
 
 export const setSortAscending = bool => dispatch =>
   dispatch({ type: SORT_PACKAGE_ASCENDING, bool })

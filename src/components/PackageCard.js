@@ -40,7 +40,9 @@ class PackageCard extends Component {
           }
         />
         <CardBody className='pkg-card-pad-16'>
-          <CardSubtitle>{this.props.price} USD</CardSubtitle>
+          <CardSubtitle>
+            {this.props.localPrice} {this.props.currency}
+          </CardSubtitle>
           <p className='pkg-card-details'>{this.props.description}</p>
         </CardBody>
         <CardFooter className='pkg-card-pad-16'>
@@ -71,7 +73,10 @@ const mapStateToProps = ({ appData, cartData }, ownProps) => ({
   pkgImage: appData.files[`assets/packages/${ownProps.image}`],
   buyImg: appData.files['assets/icons/png/add.png'],
   removeImg: appData.files['assets/icons/png/remove.png'],
-  selected: cartData.selectedPkgIds[ownProps.id]
+  selected: cartData.selectedPkgIds[ownProps.id],
+  currency: appData.currency,
+  localPrice:
+    Math.round(appData.rates[appData.currency] * ownProps.price * 100) / 100
 })
 
 const mapDispatchToProps = dispatch =>
@@ -99,7 +104,9 @@ PackageCard.propTypes = {
   selected: PropTypes.bool,
   pkgImage: imgShape,
   buyImg: imgShape,
-  removeImg: imgShape
+  removeImg: imgShape,
+  localPrice: PropTypes.number,
+  currency: PropTypes.string
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PackageCard)

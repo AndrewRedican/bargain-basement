@@ -32,3 +32,8 @@
   top: 50%;
   transform: translate(-0%, -50%);
 }
+
+.curr-drpdwn-list {
+  max-height: 200px;
+  overflow: auto;
+}

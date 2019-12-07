@@ -11,7 +11,7 @@ class ProductCard extends Component {
   }
 
   render() {
-    const { pkgImage, name, price, description } = this.props
+    const { pkgImage, name, localPrice, currency, description } = this.props
     return (
       <Card className='product-card'>
         <CardBody>
@@ -22,7 +22,7 @@ class ProductCard extends Component {
             />
             {name}
           </CardTitle>
-          <CardSubtitle>{`${price} USD`}</CardSubtitle>
+          <CardSubtitle>{`${localPrice} ${currency}`}</CardSubtitle>
           {description}
         </CardBody>
       </Card>
@@ -32,7 +32,10 @@ class ProductCard extends Component {
 
 const mapStateToProps = ({ appData }, ownProps) => ({
   pkgImageRelDir: `assets/products/${ownProps.image}`,
-  pkgImage: appData.files[`assets/products/${ownProps.image}`]
+  pkgImage: appData.files[`assets/products/${ownProps.image}`],
+  currency: appData.currency,
+  localPrice:
+    Math.round(appData.rates[appData.currency] * ownProps.price * 100) / 100
 })
 
 const mapDispatchToProps = dispatch =>
@@ -50,7 +53,9 @@ ProductCard.propTypes = {
   pkgImageRelDir: PropTypes.string,
   pkgImage: PropTypes.shape({
     downloadUrl: PropTypes.string
-  })
+  }),
+  currency: PropTypes.string,
+  localPrice: PropTypes.number
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductCard)

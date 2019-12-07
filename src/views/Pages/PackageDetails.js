@@ -31,7 +31,7 @@ class PackageDetails extends Component {
         <Row>
           <CardBody>
             <CardTitle>
-              {`${this.props.name} Package - ${this.props.price} USD`}
+              {`${this.props.name} Package - ${this.props.localPrice} ${this.props.currency}`}
             </CardTitle>
             {this.props.description}
             {!this.props.selected ? (
@@ -67,11 +67,17 @@ class PackageDetails extends Component {
   }
 }
 
-const mapStateToProps = ({ appData, cartData }, ownProps) => ({
-  ...appData.packages[ownProps.match.params.id],
-  buyImg: appData.files['assets/icons/png/add.png'],
-  selected: cartData.selectedPkgIds[ownProps.match.params.id]
-})
+const mapStateToProps = ({ appData, cartData }, ownProps) => {
+  const pkg = appData.packages[ownProps.match.params.id] || {}
+  return {
+    ...pkg,
+    buyImg: appData.files['assets/icons/png/add.png'],
+    selected: cartData.selectedPkgIds[ownProps.match.params.id],
+    currency: appData.currency,
+    localPrice:
+      Math.round(appData.rates[appData.currency] * pkg.price * 100) / 100
+  }
+}
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators({ loadPackage, addToCart, removeFromCart }, dispatch)
@@ -94,7 +100,9 @@ PackageDetails.propTypes = {
   selected: PropTypes.bool,
   addToCart: PropTypes.func,
   removeFromCart: PropTypes.func,
-  products: PropTypes.any
+  products: PropTypes.any,
+  currency: PropTypes.string,
+  localPrice: PropTypes.number
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PackageDetails)

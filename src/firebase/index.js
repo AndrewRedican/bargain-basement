@@ -4,11 +4,9 @@ import 'firebase/auth'
 import 'firebase/storage'
 import { secrets } from './config'
 
-let db
-
 export function initializeFirebase(userAuthCallback) {
   firebase.initializeApp(secrets)
-  db = firebase.database()
+  firebase.database()
   firebase.auth().onAuthStateChanged(userAuthCallback)
 }
 
