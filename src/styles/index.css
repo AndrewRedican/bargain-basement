@@ -32,19 +32,12 @@ a {
   margin: 12px;
 }
 
-#exit-package-img {
+.exit-package-img {
   height: 24px;
   width: 24px;
   cursor: pointer;
   position: absolute;
-  top: 6px;
-  right: 30px;
-}
-
-.exit-package-img {
-  height: 20px;
-  width: 20px;
-  cursor: pointer;
+  right: 14px;
 }
 
 .add-package-btn {
@@ -54,13 +47,6 @@ a {
 
 .checkout-backdrop {
   background-color: black;
-}
-
-.full-width {
-  display: block;
-  width: 460px;
-  padding-left: 0px;
-  position: relative;
 }
 
 .github-container {

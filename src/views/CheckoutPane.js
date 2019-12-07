@@ -89,20 +89,12 @@ class CheckoutPane extends Component {
         backdropClassName='checkout-backdrop'
       >
         <ModalHeader>
-          <Container className='full-width'>
-            <Row>
-              <Col tag='span' sm='9' md='9' lg='9' xl='9'>
-                My Trolley
-              </Col>
-              <Col tag='span' sm='3' md='3' lg='3' xl='3'>
-                <img
-                  id='exit-package-img'
-                  src={this.props.deleteImg.downloadUrl}
-                  onClick={this.props.closeCart}
-                />
-              </Col>
-            </Row>
-          </Container>
+          My Trolley
+          <img
+            className='exit-package-img'
+            src={this.props.deleteImg.downloadUrl}
+            onClick={this.props.closeCart}
+          />
         </ModalHeader>
         <ModalBody>{this.renderBody(selectedPkgs)}</ModalBody>
         <ModalFooter>
