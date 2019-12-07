@@ -40,11 +40,13 @@ class NavBar extends Component {
   render() {
     return (
       <Navbar sticky='top' type='dark' theme='primary' expand='md'>
-        <NavItem>
-          <Link id='brand-title' to={BASE_PATH}>
-            B. Basement
-          </Link>
-        </NavItem>
+        <Nav navbar>
+          <NavItem>
+            <Link id='brand-title' to={BASE_PATH}>
+              B. Basement
+            </Link>
+          </NavItem>
+        </Nav>
         <Nav navbar>
           <NavItem>
             <Link className='nav-link active' to={PACKAGES_PATH}>
