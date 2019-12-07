@@ -47,7 +47,7 @@ class NavBar extends Component {
   }
 
   toggleNavbar = () =>
-    this.setState({ collapseOpen: !this.state.mobileMenuOpen })
+    this.setState({ mobileMenuOpen: !this.state.mobileMenuOpen })
 
   toggleSortOptionsOpen = () =>
     this.setState({ sortOptionsOpen: !this.state.sortOptionsOpen })
