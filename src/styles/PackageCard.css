@@ -1,0 +1,51 @@
+.pkg-card {
+  margin: 10px auto;
+  position: relative;
+  height: calc(100vh - 120px);
+  min-height: 392px;
+}
+
+.pkg-card.selected {
+  border: 1px solid #007bffcc !important;
+}
+
+.pkg-card.selected > .pkg-card-header {
+  background-color: #007bffcc;
+}
+
+.pkg-card.selected > .pkg-card-header > .card-title {
+  color: white;
+}
+
+.pkg-card-header {
+  height: 60px;
+}
+
+.pkg-card-pad-16 {
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+}
+
+.pkg-card-details {
+  height: auto;
+  min-height: 42px;
+  max-height: 93px;
+  display: border-box;
+  overflow: hidden;
+  position: relative;
+}
+
+.pkg-card-img {
+  box-sizing: border-box;
+  margin: 10px auto;
+  object-fit: scale-down;
+  width: 100%;
+  height: 36%;
+}
+
+.pkg-card-btn {
+  height: 42px;
+  width: 42px;
+  cursor: pointer;
+  float: right;
+}

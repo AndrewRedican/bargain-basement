@@ -2,10 +2,18 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { Card, CardHeader, CardTitle, CardBody } from 'shards-react'
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardSubtitle,
+  CardBody,
+  CardFooter
+} from 'shards-react'
 import { Link } from 'react-router-dom'
 import { loadDownloadUrl, addToCart, removeFromCart } from '../actions'
 import { PACKAGE_DETAIL } from '../paths'
+import '../styles/PackageCard.css'
 
 class PackageCard extends Component {
   componentDidMount() {
@@ -20,35 +28,39 @@ class PackageCard extends Component {
   render() {
     const readMoreTarget = PACKAGE_DETAIL.replace(':id', this.props.id)
     return (
-      <Card className={`package-card ${this.props.selected ? 'selected' : ''}`}>
-        <CardHeader>{this.props.name}</CardHeader>
+      <Card className={`pkg-card ${this.props.selected ? 'selected' : ''}`}>
+        <CardHeader className='pkg-card-header'>
+          <CardTitle>{this.props.name}</CardTitle>
+        </CardHeader>
         <img
-          className='package-card-img'
+          className='pkg-card-img'
           src={
             this.props.pkgImage.downloadUrl ||
             'src/assets/icons/svg/loading.svg'
           }
         />
-        <CardBody>
-          <CardTitle>{this.props.price} USD</CardTitle>
-          <p className='limited-display'>{this.props.description}</p>
+        <CardBody className='pkg-card-pad-16'>
+          <CardSubtitle>{this.props.price} USD</CardSubtitle>
+          <p className='pkg-card-details'>{this.props.description}</p>
+        </CardBody>
+        <CardFooter className='pkg-card-pad-16'>
           <Link className='btn btn-primary' to={readMoreTarget}>
-            Read more &rarr;
+            Details &rarr;
           </Link>
           {!this.props.selected ? (
             <img
-              className='add-package-img'
+              className='pkg-card-btn'
               src={this.props.buyImg.downloadUrl}
               onClick={this.onAddToCart}
             />
           ) : (
             <img
-              className='add-package-img'
+              className='pkg-card-btn'
               src={this.props.removeImg.downloadUrl}
               onClick={this.removeFromCart}
             />
           )}
-        </CardBody>
+        </CardFooter>
       </Card>
     )
   }

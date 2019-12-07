@@ -1,15 +1,15 @@
 @font-face {
   font-family: 'FarmFont';
-  src: url('assets/fonts/From Cartoon Blocks.ttf') format('truetype');
+  src: url('../assets/fonts/From Cartoon Blocks.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Architects Daughter';
-  src: url('assets/fonts/ArchitectsDaughter.ttf') format('truetype');
+  src: url('../assets/fonts/ArchitectsDaughter.ttf') format('truetype');
 }
 
 body {
-  background-image: url('assets/concrete_wall_2.png');
+  background-image: url('../assets/concrete_wall_2.png');
 }
 
 a {
@@ -29,39 +29,8 @@ a {
   box-sizing: border-box;
 }
 
-.no-padding {
-  padding: 2px 0px;
-}
-
 .pointer {
   cursor: pointer;
-}
-
-.package-card {
-  margin: 10px auto;
-  position: relative;
-  height: calc(100vh - 120px);
-  min-height: 326px;
-}
-
-.package-card.selected {
-  border: 2px solid #007bff !important;
-}
-
-.package-card-img {
-  box-sizing: border-box;
-  margin: 10px auto;
-  object-fit: scale-down;
-  width: 100%;
-  height: 36%;
-}
-
-.limited-display {
-  height: 72px;
-  max-height: 72px;
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
 }
 
 .product-card {
@@ -73,14 +42,6 @@ a {
   height: 56px;
   width: 56px;
   margin: 12px;
-}
-
-.add-package-img {
-  height: 48px;
-  width: 48px;
-  cursor: pointer;
-  float: right;
-  margin: -4px;
 }
 
 #exit-package-img {

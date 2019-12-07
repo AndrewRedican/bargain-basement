@@ -99,7 +99,7 @@ class NavBar extends Component {
           undefined
         )}
         <Nav navbar className='ml-auto'>
-          <NavLink active className='no-padding'>
+          <NavLink active>
             {this.props.packagesInCart ? (
               <Badge pill theme='light' style={{ cursor: 'auto' }}>
                 {this.props.packagesInCart}

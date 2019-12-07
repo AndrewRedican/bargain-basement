@@ -5,7 +5,7 @@ import store from './store'
 import './axiosConfig'
 import './paths'
 import App from './views/App'
-import './index.css'
+import './styles/index.css'
 
 import { initializeFirebase } from './firebase'
 import { userAuthenticated } from './actions'
