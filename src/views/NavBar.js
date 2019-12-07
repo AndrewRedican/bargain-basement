@@ -146,7 +146,8 @@ NavBar.propTypes = {
   pkgImage: PropTypes.shape({
     downloadUrl: PropTypes.string
   }),
-  openCart: PropTypes.func
+  openCart: PropTypes.func,
+  packagesInCart: PropTypes.number
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NavBar))
