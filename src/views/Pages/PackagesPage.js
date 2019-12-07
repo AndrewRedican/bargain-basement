@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { Row, Col } from 'shards-react'
+import { Col } from 'shards-react'
 import PackageCard from '../../components/PackageCard'
 import { loadPackages } from '../../actions'
 
@@ -33,9 +33,7 @@ class PackagesPage extends Component {
 
   renderPakage = (pkg, i) => (
     <Col key={i} lg={3} md={6} sm={6} xs={12}>
-      <div className='pkgs-margin'>
-        <PackageCard {...pkg} />
-      </div>
+      <PackageCard {...pkg} />
     </Col>
   )
 

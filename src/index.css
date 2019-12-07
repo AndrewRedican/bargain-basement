@@ -37,14 +37,8 @@ a {
   cursor: pointer;
 }
 
-.pkgs-margin {
-  position: relative;
-  box-sizing: border-box;
-  width: 100%;
-  padding: 10px;
-}
-
 .package-card {
+  margin: 10px auto;
   position: relative;
   height: calc(100vh - 120px);
   min-height: 326px;
@@ -164,11 +158,6 @@ a {
   left: 50%;
   transform: translate(-50%, 50%);
   opacity: 0.85;
-}
-
-.row-extra-padding {
-  padding-top: 10px;
-  padding-bottom: 10px;
 }
 
 .ext-package-img-cart {
